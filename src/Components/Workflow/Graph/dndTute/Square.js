@@ -9,7 +9,6 @@ const styles = {
 
 class Square extends Component {
   render() {
-    console.log("square", this.props);
     const fill = this.props.black ? "black" : "white";
     const stroke = this.props.black ? "white" : "black";
     return (

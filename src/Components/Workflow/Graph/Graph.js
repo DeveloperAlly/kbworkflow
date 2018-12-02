@@ -13,7 +13,9 @@ const styles = {
 
 class Graph extends Component {
   state = {
-    knightPosition: [0,0]
+    knightPosition: [0,0],
+    piecePositions: { castle: [1, 1], knight: [2, 0] }
+    // nodeConnectors: { [{from: [0,0], to: [1, 1]}, {} ]}  //for graphing tbcompleted
   };
 
   moveKnight = (toX, toY) => {
@@ -21,12 +23,20 @@ class Graph extends Component {
     this.setState({ knightPosition: [toX, toY] });
   };
 
+  movePiece = (toX, toY, id) => {
+    console.log("movepiece", id, toX, toY);
+    let piecePositions = this.state.piecePositions;
+    piecePositions[id] = [toX, toY];
+    console.log("piecePositions", piecePositions);
+    this.setState({ piecePositions });
+  };
+
   render() {
     return (
       <div style={styles.container}>
         <Board
-          knightPosition={this.state.knightPosition}
-          moveKnight={this.moveKnight}
+          movePiece={this.movePiece}
+          piecePositions={this.state.piecePositions}
         />
       </div>
     );

@@ -3,10 +3,10 @@ import { DragSource } from "react-dnd";
 
 const ItemTypes = {
   PIECE: "piece",
-  KNIGHT: "knight"
+  CASTLE: "castle"
 };
 
-const knightSource = {
+const castleSource = {
   beginDrag(props) {
     console.log("begindrag", props);
     return { props };
@@ -28,18 +28,18 @@ const styles = {
   }
 };
 
-class Knight extends Component {
+class Castle extends Component {
   render() {
     console.log(this.props);
     return this.props.connectDragSource(
       <div
-        id="knight"
+        id="castle"
         style={{ ...styles.piece, opacity: this.props.isDragging ? 0.5 : 1 }}
       >
-        ♘
+        ♖
       </div>
     );
   }
 }
 
-export default DragSource(ItemTypes.KNIGHT, knightSource, collect)(Knight);
+export default DragSource(ItemTypes.CASTLE, castleSource, collect)(Castle);

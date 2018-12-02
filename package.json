@@ -3,9 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^3.6.0",
+    "@material-ui/icons": "^3.0.1",
+    "@vx/gradient": "0.0.165",
+    "@vx/group": "0.0.170",
+    "@vx/hierarchy": "0.0.181",
+    "@vx/network": "0.0.179",
+    "@vx/shape": "0.0.181",
+    "d3-hierarchy": "^1.1.8",
+    "d3-shape": "^1.2.2",
     "react": "^16.6.3",
+    "react-dnd": "^7.0.1",
+    "react-dnd-html5-backend": "^7.0.1",
     "react-dom": "^16.6.3",
-    "react-scripts": "2.1.1"
+    "react-flow-diagram": "^2.13.0",
+    "react-scripts": "2.1.1",
+    "styled-components": "^4.1.2"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -21,5 +34,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "eslint-plugin-prettier": "^3.0.0",
+    "prettier": "1.15.2"
+  }
 }

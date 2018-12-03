@@ -6,6 +6,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
 import { DragSource, connectDragSource } from "react-dnd";
+import NodeCircle from './NodeCircle';
 
 /*
 Component Requirements...
@@ -82,8 +83,8 @@ class GraphNode extends Component {
     return this.props.connectDragSource(
       <div key={this.props.graphKey} style={styles.container}>
         <Node color={this.props.color}>
-            <ConnectCircle className={"connect-circle"}/>
-            <ConnectCircle top className={"connect-circle"}/>
+            <StyledCircle top/>
+            <StyledCircle />
             <Label>{this.state.selectedItem}</Label>
             <IconWrapper>
               <IconButton
@@ -135,34 +136,24 @@ const Node = styled(Paper)`
   display: flex;
   position: relative;
 `;
-const ConnectCircle = styled.div`
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  margin-left: auto;
-  right: 0;
-  margin-right: auto;
-  margin-bottom: -10px;
-  background: grey;
-  opacity: 0;
-  cursor: pointer;
-  &:hover {
-    opacity: 1;
+const StyledCircle = styled(NodeCircle)`
+  && {
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    bottom: 0;
+    margin-bottom: -10px;
+    ${({top}) => top&&`
+      top: 0;
+      bottom: auto;
+      margin-bottom: auto;
+      margin-top: -10px;
+    `}
   }
-  ${props => props.active&&`
-    background: white;
-  `}
-  ${props => props.top&&`
-    top: 0;
-    bottom: auto;
-    margin-bottom: auto;
-    margin-top: -10px;
-  `}
+  
 `;
-
 const IconWrapper = styled.div`
   width: auto;
 `;

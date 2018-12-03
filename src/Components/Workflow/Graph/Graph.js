@@ -11,10 +11,26 @@ const styles = {
   }
 };
 
+/*
+Piece object {
+  id: unique
+  type: string
+  position: [0,0]
+  connections: [] //array of unique ids of other pieces this one is connected to
+}
+*/
 class Graph extends Component {
   state = {
-    knightPosition: [0,0],
-    piecePositions: { castle: [1, 1], knight: [2, 0] }
+    pieces: [
+      { id: "castle0", type: "castle", position: [1, 1], connections: [] },
+      { id: "knight0", type: "knight", position: [1, 1], connections: [] },
+      { id: "pawn0", type: "pawn", position: [1, 1], connections: [] }
+    ],
+    piecePositions: {
+      castle: [1, 1],
+      knight: [2, 0],
+      pawn: [[0, 0], [7, 0]]
+    }
     // nodeConnectors: { [{from: [0,0], to: [1, 1]}, {} ]}  //for graphing tbcompleted
   };
 

@@ -39,24 +39,24 @@ class Graph extends Component {
       { id: "pawn1", type: "pawn", position: [2, 0], connections: [] }
     ],
     nodes: [
-      {
-        id: "chatbot0",
-        type: "chatbot",
-        position: [3, 0],
-        relations: relationTest
-      },
-      {
-        id: "ticketType0",
-        type: "ticketType",
-        position: [2, 2],
-        relations: relationTest
-      },
-      {
-        id: "notification0",
-        type: "notification",
-        position: [4, 2],
-        relations: relationTest
-      }
+      // {
+      //   id: "chatbot0",
+      //   type: "chatbot",
+      //   position: [3, 0],
+      //   relations: relationTest
+      // },
+      // {
+      //   id: "ticketType0",
+      //   type: "ticketType",
+      //   position: [2, 2],
+      //   relations: relationTest
+      // },
+      // {
+      //   id: "notification0",
+      //   type: "notification",
+      //   position: [4, 2],
+      //   relations: relationTest
+      // }
     ]
   };
 

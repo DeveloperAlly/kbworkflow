@@ -17,34 +17,53 @@ Piece object {
   type: string
   position: [0,0]
   connections: [] //array of unique ids of other pieces this one is connected to
+  existing: boolean // flag to tell if this is a new piece or already on the board?
 }
 */
 class Graph extends Component {
   state = {
     pieces: [
-      { id: "castle0", type: "castle", position: [1, 1], connections: [] },
+      { id: "castle0", type: "castle", position: [0, 0], connections: [] },
       { id: "knight0", type: "knight", position: [1, 1], connections: [] },
-      { id: "pawn0", type: "pawn", position: [1, 1], connections: [] }
-    ],
-    piecePositions: {
-      castle: [1, 1],
-      knight: [2, 0],
-      pawn: [[0, 0], [7, 0]]
-    }
-    // nodeConnectors: { [{from: [0,0], to: [1, 1]}, {} ]}  //for graphing tbcompleted
+      { id: "pawn0", type: "pawn", position: [1, 0], connections: [] },
+      { id: "pawn1", type: "pawn", position: [2, 0], connections: [] }
+    ]
   };
 
-  moveKnight = (toX, toY) => {
-    console.log("moveKnight");
-    this.setState({ knightPosition: [toX, toY] });
+  makeUniqueId = type => {
+    //count the current number of types
+    let count = this.state.pieces.filter(obj => obj.type === type).length;
+    return `${type}${count}`;
   };
 
-  movePiece = (toX, toY, id) => {
-    console.log("movepiece", id, toX, toY);
-    let piecePositions = this.state.piecePositions;
-    piecePositions[id] = [toX, toY];
-    console.log("piecePositions", piecePositions);
-    this.setState({ piecePositions });
+  addPiece = (toX, toY, pieceProps) => {
+    //determine the unique id for the new piece
+    //add it to the pieces array
+    let id = this.makeUniqueId(pieceProps.type);
+    let piece = Object.assign({}, pieceProps);
+    let newPiece = Object.assign(piece, {
+      id,
+      position: [toX, toY],
+      connections: []
+    });
+    let pieces = this.state.pieces;
+    pieces.push(newPiece);
+    this.setState({ pieces });
+  };
+
+  movePiece = (toX, toY, pieceId) => {
+    //1. moves the piece
+    //2. moves/redraws the connected lines
+    console.log("movepiece", pieceId, toX, toY);
+    let pieces = this.state.pieces;
+    let indexId = pieces
+      .map(x => {
+        return x.id;
+      })
+      .indexOf(pieceId);
+    console.log("indexID", indexId);
+    pieces[indexId].position = [toX, toY];
+    this.setState({ pieces });
   };
 
   render() {
@@ -52,7 +71,8 @@ class Graph extends Component {
       <div style={styles.container}>
         <Board
           movePiece={this.movePiece}
-          piecePositions={this.state.piecePositions}
+          addPiece={this.addPiece}
+          pieces={this.state.pieces}
         />
       </div>
     );

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import BoardSquare from "./BoardSquare";
 import Knight from "./Knight";
 import Castle from "./Castle";
+import Pawn from "./Pawn";
 
 const styles = {
   container: {
@@ -18,7 +19,7 @@ const styles = {
 };
 
 class Board extends Component {
-  renderSquare = (i, piecePositions) => {
+  renderSquare = (i, pieces) => {
     const x = i % 8;
     const y = Math.floor(i / 8);
 
@@ -28,37 +29,41 @@ class Board extends Component {
           x={x}
           y={y}
           movePiece={this.props.movePiece}
-          piecePositions={this.props.piecePositions}
+          addPiece={this.props.addPiece}
+          pieces={this.props.pieces}
         >
-          {this.renderPiece(x, y, this.props.piecePositions)}
+          {this.renderPiece(x, y, this.props.pieces)}
         </BoardSquare>
       </div>
     );
   };
 
-  renderPiece = (x, y, piecePositions) => {
-    console.log("renderboardposition");
-    if (piecePositions.knight) {
-      // console.log("piecePositions.castle", piecePositions.castle[0]);
-      if (x === piecePositions.knight[0] && y === piecePositions.knight[1]) {
-        console.log("render knight position", x, y);
-        return <Knight id="knight" />;
+  renderPiece = (x, y, pieces) => {
+    //pieces is an array of objects
+    let chessPiece = pieces.map(piece => {
+      if (x === piece.position[0] && y === piece.position[1]) {
+        console.log("RENDERME", piece);
+        switch (piece.type) {
+          case "knight":
+            console.log("RENDERKNIGHT");
+            return <Knight id={piece.id} />;
+          case "castle":
+            return <Castle id={piece.id} />;
+          case "pawn":
+            return <Pawn id={piece.id} />;
+          default:
+            return null;
+        }
       }
-    }
-    if (piecePositions.castle) {
-      // console.log("piecePositions.castle", piecePositions.castle[0]);
-      if (x === piecePositions.castle[0] && y === piecePositions.castle[1]) {
-        console.log("render castle");
-        return <Castle id="castle" />;
-      }
-    }
-    return null;
+    });
+    return chessPiece;
   };
 
   render() {
     const squares = [];
     for (let i = 0; i < 64; i++) {
-      squares.push(this.renderSquare(i, this.props.piecePositions));
+      // squares.push(this.renderSquare(i, this.props.piecePositions));
+      squares.push(this.renderSquare(i, this.props.pieces));
     }
     return <div style={styles.container}>{squares}</div>;
   }

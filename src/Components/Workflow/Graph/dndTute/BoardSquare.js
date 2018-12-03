@@ -12,15 +12,21 @@ const squareTarget = {
   hover(props, monitor) {
     // console.log("hoveringg");
   },
-  canDrop(props) {
-    // check if theres already a piece here or not
-    console.log("candrop", props);
-    return true;
-  },
+  // canDrop(props) {
+  //   // check if theres already a piece here or not
+  //   console.log("candrop", props);
+  //   return true;
+  // },
   drop(props, monitor, component) {
     const item = monitor.getItem();
-    // props.moveKnight(props.x, props.y);
-    props.movePiece(props.x, props.y, item.props.id);
+    console.log("DROP ITEM", item);
+    if (item.props.id) {
+      console.log("MOVE ME", props);
+      props.movePiece(props.x, props.y, item.props.id);
+    } else {
+      console.log("ADD ME");
+      props.addPiece(props.x, props.y, item.props);
+    }
   }
 };
 

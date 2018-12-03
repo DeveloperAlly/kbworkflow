@@ -3,7 +3,7 @@ import { DropTarget } from "react-dnd";
 import Square from "./Square";
 
 const ItemTypes = {
-  PIECE: "piece",
+  PAWN: "pawn",
   CASTLE: "castle",
   KNIGHT: "knight"
 };
@@ -12,10 +12,11 @@ const squareTarget = {
   hover(props, monitor) {
     // console.log("hoveringg");
   },
-  // canDrop(props) {
-  //   check if theres already a piece here or not
-  //   console.log("candrop", props);
-  // },
+  canDrop(props) {
+    // check if theres already a piece here or not
+    console.log("candrop", props);
+    return true;
+  },
   drop(props, monitor, component) {
     const item = monitor.getItem();
     // props.moveKnight(props.x, props.y);
@@ -64,7 +65,7 @@ class BoardSquare extends Component {
 }
 
 export default DropTarget(
-  [ItemTypes.KNIGHT, ItemTypes.CASTLE],
+  [ItemTypes.KNIGHT, ItemTypes.CASTLE, ItemTypes.PAWN],
   squareTarget,
   collect
 )(BoardSquare);

@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
-import { DragSource, connectDragSource } from "react-dnd";
-import NodeCircle from './NodeCircle';
+import { DragSource } from "react-dnd";
+import NodeCircle from "./NodeCircle";
 
 /*
 Component Requirements...
@@ -20,7 +20,7 @@ const styles = {
   container: {
     marginBottom: "15px",
     borderRadius: "5px"
-  },
+  }
 };
 
 const ITEM_HEIGHT = 48;
@@ -31,13 +31,9 @@ const Types = {
 
 const nodeSource = {
   beginDrag(props) {
-    return {
-      color: props.color
-    };
+    return { props };
   }
 };
-
-
 
 // Props: text: string or Array of strings, color: string
 class GraphNode extends Component {
@@ -137,7 +133,7 @@ export default DragSource(Types.NODE, nodeSource, connect => ({
 
 const Node = styled(Paper)`
   border-radius: 3px;
-  border-left: 6px solid ${props => props.color ? props.color : 'grey'};
+  border-left: 6px solid ${props => (props.color ? props.color : "grey")};
   display: flex;
   position: relative;
 `;
@@ -150,14 +146,15 @@ const StyledCircle = styled(NodeCircle)`
     margin-right: auto;
     bottom: 0;
     margin-bottom: -10px;
-    ${({top}) => top&&`
+    ${({ top }) =>
+      top &&
+      `
       top: 0;
       bottom: auto;
       margin-bottom: auto;
       margin-top: -10px;
     `}
   }
-  
 `;
 const IconWrapper = styled.div`
   width: auto;
@@ -165,4 +162,4 @@ const IconWrapper = styled.div`
 
 const Label = styled.p`
   flex: 1;
-`
+`;

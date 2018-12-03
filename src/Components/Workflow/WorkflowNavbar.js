@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from 'styled-components';
 
 const Header = styled.div`
-  height: 50px;
+  height: 60px;
   background: #6294c3; /* Old browsers */
   background: -moz-linear-gradient(left, #6294c3 0%, #637eb8 100%); /* FF3.6-15 */
   background: -webkit-linear-gradient(left, #6294c3 0%,#637eb8 100%); /* Chrome10-25,Safari5.1-6 */

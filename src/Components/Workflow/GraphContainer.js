@@ -18,8 +18,7 @@ const styles = {
   },
   column_left: {
     width: "20%",
-    backgroundColor: "lightgrey",
-    borderRadius: "15px"
+    borderRadius: "5px"
   },
   column_center: {
     width: "75%",
@@ -40,13 +39,21 @@ const styles = {
   }
 };
 
+const listItems = [
+  {label:"Reset password", selected: false},
+  {label:"Migrate emails for clients", selected: true},
+  {label:"Deliver new password after reset", selected: false},
+  {label:"permission for folders", selected: false},
+
+]
+
 class GraphContainer extends Component {
   render() {
     return (
       <div style={styles.page}>
         <Grid container spacing={16} justify="space-around">
           <Paper elevation={3} style={styles.column_left}>
-            <ListView />
+            <ListView listItems={listItems}/>
           </Paper>
           <Paper elevation={3} style={styles.column_center}>
             <GraphView graphHeaderText="Insert Text for graphheader here"/>

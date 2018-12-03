@@ -47,15 +47,29 @@ const listItems = [
 ];
 
 class GraphContainer extends Component {
+  state = {
+    selectedListIndex: 0
+  };
+
+  selectIndex = newIndex => {
+    this.setState({
+      selectedListIndex: newIndex
+    });
+  };
+
   render() {
     return (
       <div style={styles.page}>
         <Grid container spacing={16} justify="space-around">
           <Paper elevation={3} style={styles.column_left}>
-            <ListView listItems={listItems}/>
+            <ListView
+              listItems={listItems}
+              select={this.selectIndex}
+              selectedIndex={this.state.selectedListIndex}
+            />
           </Paper>
           <Paper elevation={3} style={styles.column_center}>
-            <GraphView graphHeaderText="Insert Text for graphheader here"/>
+            <GraphView graphHeaderText={listItems[this.state.selectedListIndex].label}/>
           </Paper>
         </Grid>
       </div>

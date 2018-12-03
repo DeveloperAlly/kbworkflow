@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 import Grid from "@material-ui/core/Grid";
 // import { DragDropContext } from "react-dnd";
 // import HTML5Backend from "react-dnd-html5-backend";
@@ -41,26 +42,37 @@ const styles = {
 //   );
 // }
 
+const Header = styled.div`
+  background: #f6f6f6;
+  padding: 10px;
+`;
+const HeaderText = styled.h3`
+  text-align: left;
+  margin: 0;
+  color: rgba(0, 0, 0, 0.7);
+  padding-left: 20px;
+`;
+
 class GraphView extends Component {
   render() {
     return (
       <div style={styles.container}>
-        <div style={styles.graph_header}>
-          <div>{this.props.graphHeaderText}</div>
-        </div>
+        <Header>
+          <HeaderText>{this.props.graphHeaderText}</HeaderText>
+        </Header>
         <Grid container>
           <Grid item xs={9}>
             <div style={styles.graph}>
-              <Graph children="this is the graph"/>
+              <Graph children="this is the graph" />
             </div>
           </Grid>
           <Grid item xs={3}>
             <Grid container direction="column" style={styles.right_container}>
               <div style={styles.graph_mini}>
-                <GraphMini/>
+                <GraphMini />
               </div>
               <div style={styles.graph_elements}>
-                <GraphElements/>
+                <GraphElements />
               </div>
             </Grid>
           </Grid>

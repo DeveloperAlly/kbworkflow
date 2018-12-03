@@ -31,15 +31,23 @@ const Types = {
 
 const nodeSource = {
   beginDrag(props) {
+    console.log("BEGIN DRAG", props);
     return { props };
   }
 };
+
+function collect(connect, monitor) {
+  return {
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
+  };
+}
 
 // Props: text: string or Array of strings, color: string
 class GraphNode extends Component {
   state = {
     anchorEl: null,
-    selectedIndex: 0,
+    selectedIndex: 0
   };
 
   renderDropdown = () => {
@@ -83,59 +91,59 @@ class GraphNode extends Component {
     return this.props.connectDragSource(
       <div key={this.props.graphKey} style={styles.container}>
         <Node color={this.props.color}>
-            <StyledCircle top/>
-            <StyledCircle />
-            <Label>{this.props.text[this.state.selectedIndex]}</Label>
-            <IconWrapper>
-              <IconButton
-                aria-label="dropdown"
-                aria-owns={open ? "menu": undefined}
-                aria-haspopup="true"
-                onClick={e => this.handleClick(e)}
-                onChange={e => this.handleClose(e)}
-              >
-                <ArrowDropDown/>
-              </IconButton>
-            </IconWrapper>
-            <Menu
-              id="menu"
-              anchorEl={this.state.anchorEl}
-              open={open}
-              onClick={event => this.handleClose(event)}
-              PaperProps={{
-                style: {
-                  maxHeight: ITEM_HEIGHT * 4.5,
-                  width: 200
-                }
-              }}
+          <StyledCircle top/>
+          <StyledCircle />
+          <Label>{this.props.text[this.state.selectedIndex]}</Label>
+          <IconWrapper>
+            <IconButton
+              aria-label="dropdown"
+              aria-owns={open ? "menu": undefined}
+              aria-haspopup="true"
+              onClick={e => this.handleClick(e)}
+              onChange={e => this.handleClose(e)}
             >
-              {this.props.text.map((option,i) => (
-                <MenuItem
-                  key={option}
-                  value={option}
-                  onClick={e => this.handleMenuItemClick(e, i)}
-                  selected={i === this.state.selectedIndex}
-                  divider={true}
-                >
-                  {option}
-                </MenuItem>
-              ))}
-            </Menu>
+              <ArrowDropDown/>
+            </IconButton>
+          </IconWrapper>
+          <Menu
+            id="menu"
+            anchorEl={this.state.anchorEl}
+            open={open}
+            onClick={event => this.handleClose(event)}
+            PaperProps={{
+              style: {
+                maxHeight: ITEM_HEIGHT * 4.5,
+                width: 200
+              }
+            }}
+          >
+            {this.props.text.map((option,i) => (
+              <MenuItem
+                key={option}
+                value={option}
+                onClick={e => this.handleMenuItemClick(e, i)}
+                selected={i === this.state.selectedIndex}
+                divider={true}
+              >
+                {option}
+              </MenuItem>
+            ))}
+          </Menu>
         </Node>
       </div>
     );
   }
 }
 
-export default DragSource(Types.NODE, nodeSource, connect => ({
-  connectDragSource: connect.dragSource()
-}))(GraphNode);
+export default DragSource(Types.NODE, nodeSource, collect)(GraphNode);
 
 const Node = styled(Paper)`
   border-radius: 3px;
   border-left: 6px solid ${props => (props.color ? props.color : "grey")};
   display: flex;
   position: relative;
+  height: 95%;
+  z-index: 9;
 `;
 const StyledCircle = styled(NodeCircle)`
   && {

@@ -31,10 +31,10 @@ const styles = {
     width: "100%"
   },
   graph: {
-    width: "80%"
+    width: "20%"
   },
   graphElementsContainer: {
-    width: "20%",
+    width: "80%",
     backgroundColor: "lightgrey"
   }
 };

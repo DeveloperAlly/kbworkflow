@@ -1,11 +1,21 @@
 import React, { Component } from "react";
-import Castle from "./dndTute/Castle";
-import Knight from "./dndTute/Knight";
-import Pawn from "./dndTute/Pawn";
+import LineTo from "react-lineto";
+import VXDendo from "../VXDendo";
 
 const styles = {
   container: {
-    padding: "10px"
+    padding: "10px",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    height: "100%"
+    // backgroundColor: "pink"
+  },
+  A: {
+    backgroundColor: "red"
+  },
+  B: {
+    backgroundColor: "blue"
   }
 };
 
@@ -13,10 +23,9 @@ class GraphMini extends Component {
   render() {
     return (
       <div style={styles.container}>
-        GraphMini
-        <Pawn id="" type="pawn" />
-        <Knight id="" type="knight" />
-        <Castle id="" type="castle" />
+{/*        <div className="A" fromAnchor="bottom" style={styles.A}>Element A</div>
+        <div className="B" style={styles.B}>Element B</div>
+        <LineTo from="A" to="B" /> */}
       </div>
     );
   }

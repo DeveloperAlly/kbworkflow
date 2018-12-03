@@ -77,14 +77,12 @@ class GraphElements extends Component {
           color="green"
           text={tt_options}
           type="ticketType"
-          graphKey="node1"
           id=""
         />
         <GraphNode
           color="purple"
           text={aj_options}
           type="automationJob"
-          graphKey="node2"
           id=""
         />
         <GraphNode

@@ -18,6 +18,7 @@ const ListItem = styled.div`
   display: flex;
   align-items: center;
   padding: 20px;
+  cursor: pointer;
   ${props => props.selected&&`
     background-color: #f6f6f6;
     p {
@@ -35,13 +36,23 @@ const Dots = styled.div`
 `;
 
 class ListView extends Component {
+  state = {
+    selectedIndex: 0,
+  };
+
+  selectIndex = newIndex => {
+    this.setState({
+      selectedIndex: newIndex,
+    })
+  }
+
   render() {
     const { listItems } = this.props;
     return (
       <Wrapper>
         <List>
-        {listItems.map(listItem  => (
-          <ListItem selected={listItem.selected}>
+        {listItems.map((listItem, i)  => (
+          <ListItem key={i} selected={this.state.selectedIndex === i} onClick={() => this.selectIndex(i)}>
             <Label>{listItem.label}</Label>
             <Dots><IconButton><More /></IconButton></Dots>
           </ListItem>

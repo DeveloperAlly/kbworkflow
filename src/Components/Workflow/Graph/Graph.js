@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Board from "./dndTute/Board";
+import GraphDrop from "./GraphDrop";
 
 const styles = {
   container: {
@@ -120,7 +121,7 @@ class Graph extends Component {
   render() {
     return (
       <div style={styles.container}>
-        <Board
+        <GraphDrop
           moveNode={this.moveNode}
           addNode={this.addNode}
           nodes={this.state.nodes}

@@ -5,7 +5,7 @@ import GraphDrop from "./GraphDrop";
 const styles = {
   container: {
     padding: "10px",
-    // backgroundColor: "lightpink",
+    backgroundColor: "lightblue",
     height: "98%" //what ??
   }
 };
@@ -33,31 +33,25 @@ const relationTest = [
 
 class Graph extends Component {
   state = {
-    pieces: [
-      { id: "castle0", type: "castle", position: [0, 0], connections: [] },
-      { id: "knight0", type: "knight", position: [1, 1], connections: [] },
-      { id: "pawn0", type: "pawn", position: [1, 0], connections: [] },
-      { id: "pawn1", type: "pawn", position: [2, 0], connections: [] }
-    ],
     nodes: [
-      // {
-      //   id: "chatbot0",
-      //   type: "chatbot",
-      //   position: [3, 0],
-      //   relations: relationTest
-      // },
-      // {
-      //   id: "ticketType0",
-      //   type: "ticketType",
-      //   position: [2, 2],
-      //   relations: relationTest
-      // },
-      // {
-      //   id: "notification0",
-      //   type: "notification",
-      //   position: [4, 2],
-      //   relations: relationTest
-      // }
+      {
+        id: "ticketType0",
+        type: "ticketType",
+        position: { left: 200, top: 50 },
+        relations: relationTest
+      },
+      {
+        id: "chatbot0",
+        type: "chatbot",
+        position: { left: 550, top: 550 },
+        relations: relationTest
+      },
+      {
+        id: "notification0",
+        type: "notification",
+        position: { left: 700, top: 650 },
+        relations: relationTest
+      }
     ]
   };
 
@@ -66,31 +60,7 @@ class Graph extends Component {
     return `${type}${count}`;
   };
 
-  addPiece = (toX, toY, pieceProps) => {
-    let id = this.makeUniqueId(pieceProps.type);
-    let piece = Object.assign({}, pieceProps);
-    let newPiece = Object.assign(piece, {
-      id,
-      position: [toX, toY],
-      connections: []
-    });
-    let pieces = this.state.pieces;
-    pieces.push(newPiece);
-    this.setState({ pieces });
-  };
-
-  deletePiece = pieceId => {
-    let pieces = this.state.pieces;
-    let indexId = pieces
-      .map(x => {
-        return x.id;
-      })
-      .indexOf(pieceId);
-    let newPieces = pieces.splice(indexId, 1);
-    this.setState({ pieces: newPieces });
-  };
-
-  moveNode = (toX, toY, id) => {
+  moveNode = (left, top, id) => {
     console.log("move node");
     let nodes = this.state.nodes;
     let indexId = nodes
@@ -98,16 +68,19 @@ class Graph extends Component {
         return x.id;
       })
       .indexOf(id);
-    nodes[indexId].position = [toX, toY];
+    console.log("indexId to change", indexId);
+    nodes[indexId].position = { left, top };
+    console.log("new nodeposition", nodes);
     this.setState({ nodes });
   };
 
-  addNode = (toX, toY, nodeProps) => {
+  addNode = (left, top, nodeProps) => {
+    console.log("ADD MA NODE DAYUM", left, top, nodeProps);
     let id = this.makeUniqueId(nodeProps.type);
     let node = Object.assign({}, nodeProps);
     let newNode = Object.assign(node, {
       id,
-      position: [toX, toY]
+      position: { left, top }
     });
     let nodes = this.state.nodes;
     nodes.push(newNode);

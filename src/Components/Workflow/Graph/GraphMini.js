@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { ArcherContainer, ArcherElement } from "react-archer";
-import VXDendo from "../VXDendo";
+import BoxDemo from "./dndTute/BoxDemo";
 
 const styles = {
   container: {
@@ -85,6 +85,12 @@ class GraphMini extends Component {
             </ArcherElement>
           </div>
         </ArcherContainer>
+        {/* <BoxDemo
+          id={""}
+          relations={[]}
+        >
+          ADD ME!
+        </BoxDemo> */}
       </div>
     );
   }

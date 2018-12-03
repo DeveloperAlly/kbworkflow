@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { DragSource } from "react-dnd";
+import { ArcherElement } from "react-archer";
+import ReactDOM from "react-dom";
 
 const styles = {
   box: {
@@ -31,20 +33,25 @@ function collect(connect, monitor) {
 
 class BoxDemo extends Component {
   state = {
-    id: "",
     left: "",
     top: ""
   };
 
+  componentDidMount() {
+    let dropBoundingBox = ReactDOM.findDOMNode(this).getBoundingClientRect();
+    console.log("BOUNDS BOX", dropBoundingBox, this.props);
+    // this.setState({});
+  }
+
   render() {
-    console.log(this.props);
+    let { left, top } = this.props;
+    // if(!left)
+    //   left=1693.455;
+    // if(!top)
+    //   top=0;
+    console.log("BOXDEMO", this.props, left, top);
     return this.props.connectDragSource(
-      <div
-        style={styles.box}
-        id={this.props.id}
-        left={this.props.left}
-        top={this.props.top}
-      >
+      <div style={{...styles.box, left, top}}>
         {this.props.children}
       </div>
     );
@@ -52,3 +59,11 @@ class BoxDemo extends Component {
 }
 
 export default DragSource(ItemTypes.NODE, boxSource, collect)(BoxDemo);
+/*
+<ArcherElement
+  id={this.props.id}
+  relations={this.props.relations}
+>
+  {this.props.children}
+</ArcherElement>
+*/

@@ -20,7 +20,9 @@ Component Requirements...
 const styles = {
   container: {
     marginBottom: "15px",
-    borderRadius: "5px"
+    borderRadius: "5px",
+    // position: "absolute",
+    cursor: "move"
   }
 };
 
@@ -158,57 +160,61 @@ class GraphNode extends Component {
 
   render() {
     console.log("graphNode", this.props);
-    const empty = [{}];
     const open = Boolean(this.state.anchorEl);
+    const { left, top, nodeStyle } = this.props;
     return this.props.connectDragSource(
-      <div key={this.props.id} style={styles.container}>
-        <ArcherElement
-          id={this.props.id}
-          relations={this.props.relations}
-        >
-          <Node color={options[this.props.type].color}>
-            <StyledCircle top/>
-            <StyledCircle />
-            <Label>
-              {options[this.props.type].options[this.state.selectedIndex]}
-            </Label>
-            <IconWrapper>
-              <IconButton
-                aria-label="dropdown"
-                aria-owns={open ? "menu": undefined}
-                aria-haspopup="true"
-                onClick={e => this.handleClick(e)}
-                onChange={e => this.handleClose(e)}
-              >
-                <ArrowDropDown/>
-              </IconButton>
-            </IconWrapper>
-            <Menu
-              id="menu"
-              anchorEl={this.state.anchorEl}
-              open={open}
-              onClick={event => this.handleClose(event)}
-              PaperProps={{
-                style: {
-                  maxHeight: ITEM_HEIGHT * 4.5,
-                  width: 200
-                }
-              }}
+      <div
+        key={this.props.id}
+        style={{
+          ...styles.container,
+          position: nodeStyle ? nodeStyle.position : null,
+          width: nodeStyle ? nodeStyle.width : null,
+          left,
+          top
+        }}
+      >
+        <Node color={options[this.props.type].color}>
+          <StyledCircle top/>
+          <StyledCircle />
+          <Label>
+            {options[this.props.type].options[this.state.selectedIndex]}
+          </Label>
+          <IconWrapper>
+            <IconButton
+              aria-label="dropdown"
+              aria-owns={open ? "menu": undefined}
+              aria-haspopup="true"
+              onClick={e => this.handleClick(e)}
+              onChange={e => this.handleClose(e)}
             >
-              {options[this.props.type].options.map((option,i) => (
-                <MenuItem
-                  key={option}
-                  value={option}
-                  onClick={e => this.handleMenuItemClick(e, i)}
-                  selected={i === this.state.selectedIndex}
-                  divider={true}
-                >
-                  {option}
-                </MenuItem>
-              ))}
-            </Menu>
-          </Node>
-        </ArcherElement>
+              <ArrowDropDown/>
+            </IconButton>
+          </IconWrapper>
+          <Menu
+            id="menu"
+            anchorEl={this.state.anchorEl}
+            open={open}
+            onClick={event => this.handleClose(event)}
+            PaperProps={{
+              style: {
+                maxHeight: ITEM_HEIGHT * 4.5,
+                width: 200
+              }
+            }}
+          >
+            {options[this.props.type].options.map((option,i) => (
+              <MenuItem
+                key={option}
+                value={option}
+                onClick={e => this.handleMenuItemClick(e, i)}
+                selected={i === this.state.selectedIndex}
+                divider={true}
+              >
+                {option}
+              </MenuItem>
+            ))}
+          </Menu>
+        </Node>
       </div>
     );
   }

@@ -91,7 +91,7 @@ class Board extends Component {
     }
     return (
       // <ArcherContainer strokeColor="#6ebdc2">
-        <div style={styles.container}>{nodes}</div>
+      <div style={styles.container}>{nodes}</div>
       // </ArcherContainer>
     );
   }

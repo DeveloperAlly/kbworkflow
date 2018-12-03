@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+
+import { removeItem, selectItem } from "../../../redux/reducers/ListReducer";
 
 import More from "@material-ui/icons/MoreVert";
 import IconButton from "@material-ui/core/IconButton";
@@ -35,21 +38,29 @@ const Dots = styled.div`
 `;
 
 class ListView extends Component {
+
+  handleRemove = (index) => {
+    const {removeItem} = this.props;
+    removeItem(index);
+  };
+
   render() {
-    const { listItems, selectedIndex, select } = this.props;
+    console.log(this.props);
+    const { listItems, selectedListIndex } = this.props.list;
+    const { selectItem } = this.props;
     return (
       <Wrapper>
         <List>
           {listItems.map((listItem, i) => (
             <ListItem
               key={i}
-              selected={selectedIndex === i}
-              onClick={() => select(i)}
+              selected={selectedListIndex === i}
+              onClick={() => selectItem(i)}
             >
               <Label>{listItem.label}</Label>
               <Dots>
                 <IconButton>
-                  <More />
+                  <More onClick={() => this.handleRemove(i)}/>
                 </IconButton>
               </Dots>
             </ListItem>
@@ -60,4 +71,8 @@ class ListView extends Component {
   }
 }
 
-export default ListView;
+const MapStateToProps = (state) => ({
+  list: state.list
+});
+
+export default connect(MapStateToProps, {removeItem, selectItem})(ListView);

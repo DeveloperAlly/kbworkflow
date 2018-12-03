@@ -16,8 +16,8 @@ const ConnectCircle = styled.div`
   `}
 `;
 
-const NodeCircle = ({className, active, position}) => (
-  <ConnectCircle className={className} active={active} position={position}/>
+const NodeCircle = ({className, active}) => (
+  <ConnectCircle className={className} active={active}/>
 );
 
 export default NodeCircle;

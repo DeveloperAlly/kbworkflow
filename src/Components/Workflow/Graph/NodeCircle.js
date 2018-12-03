@@ -13,6 +13,8 @@ const ConnectCircle = styled.div`
   }
   ${props => props.active&&`
     background: white;
+    opacity: 1;
+    border: 1px solid black;
   `}
 `;
 

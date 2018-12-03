@@ -16,7 +16,7 @@ const initialState = {
     { label: "Reset password" },
     { label: "Migrate emails for clients" },
     { label: "Deliver new password after reset" },
-    { label: "permission for folders" }
+    { label: "Permission for folders" }
   ],
   selectedListIndex: 0
 };

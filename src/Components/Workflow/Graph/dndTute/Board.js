@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { ArcherContainer } from "react-archer";
 import BoardSquare from "./BoardSquare";
 import GraphNode from "../GraphNode";
 // import Knight from "./Knight";
@@ -18,16 +19,6 @@ const styles = {
     height: "5%"
   }
 };
-
-const tt_options = [
-  "Ticket Type",
-  "New",
-  "Open",
-  "In Progress",
-  "Resolved",
-  "Closed",
-  "Blocked"
-];
 
 class Board extends Component {
   renderSquare = (i, nodes) => {
@@ -53,14 +44,22 @@ class Board extends Component {
     let nodes = this.props.nodes.map(node => {
       if (x === node.position[0] && y === node.position[1]) {
         console.log(node.id);
-        return (
-          <GraphNode
-            color="green"
-            text={tt_options}
-            type="ticketType"
-            id={node.id}
-          />
-        );
+        switch (node.type) {
+          case "ticketType":
+            return <GraphNode type="ticketType" id={node.id} relations={node.relations}/>;
+          case "automationJob":
+            return <GraphNode type="automationJob" id={node.id} relations={node.relations}/>;
+          case "chatbot":
+            return <GraphNode type="chatbot" id={node.id} relations={node.relations}/>;
+          case "errorHandler":
+            return <GraphNode type="errorHandler" id={node.id} relations={node.relations}/>;
+          case "notification":
+            return <GraphNode type="notification" id={node.id} relations={node.relations}/>;
+          case "jobStatus":
+            return <GraphNode type="jobStatus" id={node.id} relations={node.relations}/>;
+          default:
+            return null;
+        }
       }
     });
     return nodes;
@@ -90,7 +89,11 @@ class Board extends Component {
     for (let i = 0; i < 160; i++) {
       nodes.push(this.renderSquare(i, this.props.nodes));
     }
-    return <div style={styles.container}>{nodes}</div>;
+    return (
+      // <ArcherContainer strokeColor="#6ebdc2">
+        <div style={styles.container}>{nodes}</div>
+      // </ArcherContainer>
+    );
   }
 }
 

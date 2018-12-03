@@ -6,6 +6,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
 import { DragSource } from "react-dnd";
+import { ArcherContainer, ArcherElement } from "react-archer";
 import NodeCircle from "./NodeCircle";
 
 /*
@@ -21,6 +22,75 @@ const styles = {
     marginBottom: "15px",
     borderRadius: "5px"
   }
+};
+
+const tt_options = [
+  "Ticket Type",
+  "New",
+  "Open",
+  "In Progress",
+  "Resolved",
+  "Closed",
+  "Blocked"
+];
+
+const aj_options = [
+  "Automation Job",
+  "New",
+  "Open",
+  "In Progress",
+  "Resolved",
+  "Closed",
+  "Blocked"
+];
+
+const cb_options = [
+  "Chatbot",
+  "New",
+  "Open",
+  "In Progress",
+  "Resolved",
+  "Closed",
+  "Blocked"
+];
+
+const eh_options = [
+  "Error Handler",
+  "New",
+  "Open",
+  "In Progress",
+  "Resolved",
+  "Closed",
+  "Blocked"
+];
+
+const n_options = [
+  "Notification",
+  "New",
+  "Open",
+  "In Progress",
+  "Resolved",
+  "Closed",
+  "Blocked"
+];
+
+const js_options = [
+  "Job Status",
+  "New",
+  "Open",
+  "In Progress",
+  "Resolved",
+  "Closed",
+  "Blocked"
+];
+
+const options = {
+  ticketType: { color: "green", options: tt_options },
+  automationJob: { color: "purple", options: aj_options },
+  chatbot: { color: "grey", options: cb_options },
+  errorHandler: { color: "yellow", options: eh_options },
+  notification: { color: "blue", options: n_options },
+  jobStatus: { color: "orange", options: js_options }
 };
 
 const ITEM_HEIGHT = 48;
@@ -87,49 +157,58 @@ class GraphNode extends Component {
   };
 
   render() {
+    console.log("graphNode", this.props);
+    const empty = [{}];
     const open = Boolean(this.state.anchorEl);
     return this.props.connectDragSource(
-      <div key={this.props.graphKey} style={styles.container}>
-        <Node color={this.props.color}>
-          <StyledCircle top/>
-          <StyledCircle />
-          <Label>{this.props.text[this.state.selectedIndex]}</Label>
-          <IconWrapper>
-            <IconButton
-              aria-label="dropdown"
-              aria-owns={open ? "menu": undefined}
-              aria-haspopup="true"
-              onClick={e => this.handleClick(e)}
-              onChange={e => this.handleClose(e)}
-            >
-              <ArrowDropDown/>
-            </IconButton>
-          </IconWrapper>
-          <Menu
-            id="menu"
-            anchorEl={this.state.anchorEl}
-            open={open}
-            onClick={event => this.handleClose(event)}
-            PaperProps={{
-              style: {
-                maxHeight: ITEM_HEIGHT * 4.5,
-                width: 200
-              }
-            }}
-          >
-            {this.props.text.map((option,i) => (
-              <MenuItem
-                key={option}
-                value={option}
-                onClick={e => this.handleMenuItemClick(e, i)}
-                selected={i === this.state.selectedIndex}
-                divider={true}
+      <div key={this.props.id} style={styles.container}>
+        <ArcherElement
+          id={this.props.id}
+          relations={this.props.relations}
+        >
+          <Node color={options[this.props.type].color}>
+            <StyledCircle top/>
+            <StyledCircle />
+            <Label>
+              {options[this.props.type].options[this.state.selectedIndex]}
+            </Label>
+            <IconWrapper>
+              <IconButton
+                aria-label="dropdown"
+                aria-owns={open ? "menu": undefined}
+                aria-haspopup="true"
+                onClick={e => this.handleClick(e)}
+                onChange={e => this.handleClose(e)}
               >
-                {option}
-              </MenuItem>
-            ))}
-          </Menu>
-        </Node>
+                <ArrowDropDown/>
+              </IconButton>
+            </IconWrapper>
+            <Menu
+              id="menu"
+              anchorEl={this.state.anchorEl}
+              open={open}
+              onClick={event => this.handleClose(event)}
+              PaperProps={{
+                style: {
+                  maxHeight: ITEM_HEIGHT * 4.5,
+                  width: 200
+                }
+              }}
+            >
+              {options[this.props.type].options.map((option,i) => (
+                <MenuItem
+                  key={option}
+                  value={option}
+                  onClick={e => this.handleMenuItemClick(e, i)}
+                  selected={i === this.state.selectedIndex}
+                  divider={true}
+                >
+                  {option}
+                </MenuItem>
+              ))}
+            </Menu>
+          </Node>
+        </ArcherElement>
       </div>
     );
   }

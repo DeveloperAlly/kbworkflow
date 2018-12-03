@@ -31,14 +31,11 @@ class Graph extends Component {
   };
 
   makeUniqueId = type => {
-    //count the current number of types
     let count = this.state.pieces.filter(obj => obj.type === type).length;
     return `${type}${count}`;
   };
 
   addPiece = (toX, toY, pieceProps) => {
-    //determine the unique id for the new piece
-    //add it to the pieces array
     let id = this.makeUniqueId(pieceProps.type);
     let piece = Object.assign({}, pieceProps);
     let newPiece = Object.assign(piece, {
@@ -51,17 +48,28 @@ class Graph extends Component {
     this.setState({ pieces });
   };
 
-  movePiece = (toX, toY, pieceId) => {
-    //1. moves the piece
-    //2. moves/redraws the connected lines
-    console.log("movepiece", pieceId, toX, toY);
+  deletePiece = pieceId => {
     let pieces = this.state.pieces;
     let indexId = pieces
       .map(x => {
         return x.id;
       })
       .indexOf(pieceId);
-    console.log("indexID", indexId);
+    console.log("delete");
+    let newPieces = pieces.splice(indexId, 1);
+    console.log("new pieces", newPieces);
+    this.setState({ pieces: newPieces });
+  };
+
+  movePiece = (toX, toY, pieceId) => {
+    //1. moves the piece
+    //2. moves/redraws the connected lines
+    let pieces = this.state.pieces;
+    let indexId = pieces
+      .map(x => {
+        return x.id;
+      })
+      .indexOf(pieceId);
     pieces[indexId].position = [toX, toY];
     this.setState({ pieces });
   };

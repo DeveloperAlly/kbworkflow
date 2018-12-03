@@ -8,7 +8,6 @@ const ItemTypes = {
 
 const knightSource = {
   beginDrag(props) {
-    console.log("begindrag", props);
     return { props };
   }
 };
@@ -30,7 +29,6 @@ const styles = {
 
 class Knight extends Component {
   render() {
-    console.log(this.props);
     return this.props.connectDragSource(
       <div
         id="knight"

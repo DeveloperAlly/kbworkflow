@@ -124,32 +124,14 @@ class GraphNode extends Component {
     //move stuff here
   };
 
-  handleOnDragStart = (e, id) => {
-    console.log("dragstart", id);
-    e.dataTransfer.setData("id", id);
-  };
-
-  handleOnDrop = e => {
-    console.log("drop", e);
-    let id = e.dataTransfer.getData("id");
-  };
-
-  handleClick = event => {
+  handleOpenMenu = event => {
     console.log("clicked me", event.currentTarget);
     this.setState({ anchorEl: event.currentTarget });
   };
 
-  handleClose = event => {
+  handleCloseMenu = event => {
     console.log("close event", event.target);
     this.setState({ anchorEl: null });
-  };
-
-  handleChange = event => {
-    console.log("change", event.target.value);
-  };
-
-  handleSelect = e => {
-    console.log("selected me", e.target);
   };
 
   handleMenuItemClick = (event, index) => {
@@ -158,7 +140,6 @@ class GraphNode extends Component {
 
   render() {
     console.log("graphNode", this.props);
-    const empty = [{}];
     const open = Boolean(this.state.anchorEl);
     return this.props.connectDragSource(
       <div key={this.props.id} style={styles.container}>
@@ -177,8 +158,8 @@ class GraphNode extends Component {
                 aria-label="dropdown"
                 aria-owns={open ? "menu": undefined}
                 aria-haspopup="true"
-                onClick={e => this.handleClick(e)}
-                onChange={e => this.handleClose(e)}
+                onClick={e => this.handleOpenMenu(e)}
+                onChange={e => this.handleCloseMenu(e)}
               >
                 <ArrowDropDown/>
               </IconButton>
@@ -187,7 +168,7 @@ class GraphNode extends Component {
               id="menu"
               anchorEl={this.state.anchorEl}
               open={open}
-              onClick={event => this.handleClose(event)}
+              onClick={event => this.handleCloseMenu(event)}
               PaperProps={{
                 style: {
                   maxHeight: ITEM_HEIGHT * 4.5,

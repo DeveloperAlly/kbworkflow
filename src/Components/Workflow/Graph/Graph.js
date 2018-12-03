@@ -6,7 +6,7 @@ import Knight from "../Graph/dndTute/Knight";
 const styles = {
   container: {
     padding: "10px",
-    backgroundColor: "lightpink",
+    // backgroundColor: "lightpink",
     height: "98%" //what ??
   }
 };
@@ -27,6 +27,11 @@ class Graph extends Component {
       { id: "knight0", type: "knight", position: [1, 1], connections: [] },
       { id: "pawn0", type: "pawn", position: [1, 0], connections: [] },
       { id: "pawn1", type: "pawn", position: [2, 0], connections: [] }
+    ],
+    nodes: [
+      { id: "chatbot0", type: "chatbot", position: [3,0], connections: [] },
+      { id: "chatbot1", type: "chatbot", position: [2,2], connections: [] },
+      { id: "chatbot2", type: "chatbot", position: [4,2], connections: [] }
     ]
   };
 
@@ -72,13 +77,33 @@ class Graph extends Component {
     this.setState({ pieces });
   };
 
+  moveNode = (toX, toY, id) => {
+    console.log("move node");
+    let nodes = this.state.nodes;
+    let indexId = nodes
+      .map(x => {
+        return x.id;
+      })
+      .indexOf(id);
+    nodes[indexId].position = [toX, toY];
+    this.setState({ nodes });
+  };
+
+  addNode = (toX, toY, nodeProps) => {
+    console.log("addnode");
+  };
+
+  deleteNode = id => {
+    console.log("deleteNode");
+  };
+
   render() {
     return (
       <div style={styles.container}>
         <Board
-          movePiece={this.movePiece}
-          addPiece={this.addPiece}
-          pieces={this.state.pieces}
+          moveNode={this.moveNode}
+          addNode={this.addNode}
+          nodes={this.state.nodes}
         />
       </div>
     );

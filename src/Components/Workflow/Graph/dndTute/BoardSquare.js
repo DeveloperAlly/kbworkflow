@@ -5,7 +5,8 @@ import Square from "./Square";
 const ItemTypes = {
   PAWN: "pawn",
   CASTLE: "castle",
-  KNIGHT: "knight"
+  KNIGHT: "knight",
+  NODE: "node"
 };
 
 const squareTarget = {
@@ -15,7 +16,7 @@ const squareTarget = {
   canDrop(props, monitor) {
     // check if theres already a piece here or not
     let candrop = true;
-    props.pieces.map(piece => {
+    props.nodes.map(piece => {
       if (props.x === piece.position[0] && props.y === piece.position[1]) {
         return (candrop = false);
       }
@@ -24,10 +25,13 @@ const squareTarget = {
   },
   drop(props, monitor, component) {
     const item = monitor.getItem();
+    console.log("DROPPING", props, item);
     if (item.props.id) {
-      props.movePiece(props.x, props.y, item.props.id);
+      // props.movePiece(props.x, props.y, item.props.id);
+      props.moveNode(props.x, props.y, item.props.id);
     } else {
-      props.addPiece(props.x, props.y, item.props);
+      // props.addPiece(props.x, props.y, item.props);
+      props.addNode(props.x, props.y, item.props);
     }
   }
 };
@@ -72,7 +76,7 @@ class BoardSquare extends Component {
 }
 
 export default DropTarget(
-  [ItemTypes.KNIGHT, ItemTypes.CASTLE, ItemTypes.PAWN],
+  [ItemTypes.KNIGHT, ItemTypes.CASTLE, ItemTypes.PAWN, ItemTypes.NODE],
   squareTarget,
   collect
 )(BoardSquare);

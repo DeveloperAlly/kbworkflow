@@ -44,6 +44,7 @@ const styles = {
 
 const Header = styled.div`
   background: #f6f6f6;
+  padding: 10px;
 `;
 const HeaderText = styled.h3`
   text-align: left;
@@ -56,7 +57,7 @@ class GraphView extends Component {
   render() {
     return (
       <div style={styles.container}>
-        <Header style={styles.graph_header}>
+        <Header>
           <HeaderText>{this.props.graphHeaderText}</HeaderText>
         </Header>
         <Grid container>

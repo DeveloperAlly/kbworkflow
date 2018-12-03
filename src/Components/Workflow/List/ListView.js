@@ -39,13 +39,14 @@ const Dots = styled.div`
 
 class ListView extends Component {
 
-  handleRemove = (index) => {
+  handleRemove = (e, index) => {
+    e.preventDefault();
+    e.stopPropagation();
     const {removeItem} = this.props;
     removeItem(index);
   };
 
   render() {
-    console.log(this.props);
     const { listItems, selectedListIndex } = this.props.list;
     const { selectItem } = this.props;
     return (
@@ -60,7 +61,7 @@ class ListView extends Component {
               <Label>{listItem.label}</Label>
               <Dots>
                 <IconButton>
-                  <More onClick={() => this.handleRemove(i)}/>
+                  <More onClick={(e) => this.handleRemove(e, i)}/>
                 </IconButton>
               </Dots>
             </ListItem>

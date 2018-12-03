@@ -40,16 +40,6 @@ const styles = {
 };
 
 class GraphContainer extends Component {
-  state = {
-    selectedListIndex: 0
-  };
-
-  selectIndex = newIndex => {
-    this.setState({
-      selectedListIndex: newIndex
-    });
-  };
-
   render() {
     return (
       <div style={styles.page}>

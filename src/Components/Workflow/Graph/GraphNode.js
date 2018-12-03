@@ -43,7 +43,7 @@ const nodeSource = {
 class GraphNode extends Component {
   state = {
     anchorEl: null,
-    selectedItem: this.props.text[0]
+    selectedIndex: 0,
   };
 
   renderDropdown = () => {
@@ -78,6 +78,10 @@ class GraphNode extends Component {
     console.log("selected me", e.target);
   };
 
+  handleMenuItemClick = (event, index) => {
+    this.setState({ selectedIndex: index, anchorEl: null });
+  };
+
   render() {
     const open = Boolean(this.state.anchorEl);
     return this.props.connectDragSource(
@@ -85,7 +89,7 @@ class GraphNode extends Component {
         <Node color={this.props.color}>
             <StyledCircle top/>
             <StyledCircle />
-            <Label>{this.state.selectedItem}</Label>
+            <Label>{this.props.text[this.state.selectedIndex]}</Label>
             <IconWrapper>
               <IconButton
                 aria-label="dropdown"
@@ -109,11 +113,12 @@ class GraphNode extends Component {
                 }
               }}
             >
-              {this.props.text.map(option => (
+              {this.props.text.map((option,i) => (
                 <MenuItem
                   key={option}
                   value={option}
-                  selected={option === this.state.selectedItem}
+                  onClick={e => this.handleMenuItemClick(e, i)}
+                  selected={i === this.state.selectedIndex}
                   divider={true}
                 >
                   {option}

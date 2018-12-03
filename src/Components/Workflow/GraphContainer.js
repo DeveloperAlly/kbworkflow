@@ -40,12 +40,11 @@ const styles = {
 };
 
 const listItems = [
-  {label:"Reset password", selected: false},
-  {label:"Migrate emails for clients", selected: true},
-  {label:"Deliver new password after reset", selected: false},
-  {label:"permission for folders", selected: false},
-
-]
+  { label: "Reset password", selected: false },
+  { label: "Migrate emails for clients", selected: true },
+  { label: "Deliver new password after reset", selected: false },
+  { label: "permission for folders", selected: false }
+];
 
 class GraphContainer extends Component {
   render() {

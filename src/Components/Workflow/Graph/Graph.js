@@ -55,9 +55,7 @@ class Graph extends Component {
         return x.id;
       })
       .indexOf(pieceId);
-    console.log("delete");
     let newPieces = pieces.splice(indexId, 1);
-    console.log("new pieces", newPieces);
     this.setState({ pieces: newPieces });
   };
 

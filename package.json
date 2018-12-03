@@ -10,6 +10,7 @@
     "@vx/hierarchy": "0.0.181",
     "@vx/network": "0.0.179",
     "@vx/shape": "0.0.181",
+    "aaam-react-component-library": "^1.4.50",
     "d3-hierarchy": "^1.1.8",
     "d3-shape": "^1.2.2",
     "react": "^16.6.3",

@@ -39,7 +39,7 @@ const nodeSource = {
 class GraphNode extends Component {
   state = {
     anchorEl: null,
-    selectedItem: this.props.text[0]
+    selectedIndex: 0,
   };
 
   renderDropdown = () => {
@@ -74,48 +74,53 @@ class GraphNode extends Component {
     console.log("selected me", e.target);
   };
 
+  handleMenuItemClick = (event, index) => {
+    this.setState({ selectedIndex: index, anchorEl: null });
+  };
+
   render() {
     const open = Boolean(this.state.anchorEl);
     return this.props.connectDragSource(
       <div key={this.props.graphKey} style={styles.container}>
         <Node color={this.props.color}>
-          <StyledCircle top/>
-          <StyledCircle />
-          <Label>{this.state.selectedItem}</Label>
-          <IconWrapper>
-            <IconButton
-              aria-label="dropdown"
-              aria-owns={open ? "menu": undefined}
-              aria-haspopup="true"
-              onClick={e => this.handleClick(e)}
-              onChange={e => this.handleClose(e)}
-            >
-             <ArrowDropDown/>
-            </IconButton>
-          </IconWrapper>
-          <Menu
-            id="menu"
-            anchorEl={this.state.anchorEl}
-            open={open}
-            onClick={event => this.handleClose(event)}
-            PaperProps={{
-              style: {
-                maxHeight: ITEM_HEIGHT * 4.5,
-                width: 200
-              }
-            }}
-          >
-            {this.props.text.map(option => (
-              <MenuItem
-                key={option}
-                value={option}
-                selected={option === this.state.selectedItem}
-                divider={true}
+            <StyledCircle top/>
+            <StyledCircle />
+            <Label>{this.props.text[this.state.selectedIndex]}</Label>
+            <IconWrapper>
+              <IconButton
+                aria-label="dropdown"
+                aria-owns={open ? "menu": undefined}
+                aria-haspopup="true"
+                onClick={e => this.handleClick(e)}
+                onChange={e => this.handleClose(e)}
               >
-                {option}
-              </MenuItem>
-            ))}
-          </Menu>
+                <ArrowDropDown/>
+              </IconButton>
+            </IconWrapper>
+            <Menu
+              id="menu"
+              anchorEl={this.state.anchorEl}
+              open={open}
+              onClick={event => this.handleClose(event)}
+              PaperProps={{
+                style: {
+                  maxHeight: ITEM_HEIGHT * 4.5,
+                  width: 200
+                }
+              }}
+            >
+              {this.props.text.map((option,i) => (
+                <MenuItem
+                  key={option}
+                  value={option}
+                  onClick={e => this.handleMenuItemClick(e, i)}
+                  selected={i === this.state.selectedIndex}
+                  divider={true}
+                >
+                  {option}
+                </MenuItem>
+              ))}
+            </Menu>
         </Node>
       </div>
     );

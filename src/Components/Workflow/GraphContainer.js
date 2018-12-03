@@ -39,37 +39,16 @@ const styles = {
   }
 };
 
-const listItems = [
-  { label: "Reset password", selected: false },
-  { label: "Migrate emails for clients", selected: true },
-  { label: "Deliver new password after reset", selected: false },
-  { label: "permission for folders", selected: false }
-];
-
 class GraphContainer extends Component {
-  state = {
-    selectedListIndex: 0
-  };
-
-  selectIndex = newIndex => {
-    this.setState({
-      selectedListIndex: newIndex
-    });
-  };
-
   render() {
     return (
       <div style={styles.page}>
         <Grid container spacing={16} justify="space-around">
           <Paper elevation={3} style={styles.column_left}>
-            <ListView
-              listItems={listItems}
-              select={this.selectIndex}
-              selectedIndex={this.state.selectedListIndex}
-            />
+            <ListView />
           </Paper>
           <Paper elevation={3} style={styles.column_center}>
-            <GraphView graphHeaderText={listItems[this.state.selectedListIndex].label}/>
+            <GraphView graphHeaderText={'Holder'}/>
           </Paper>
         </Grid>
       </div>

@@ -157,7 +157,6 @@ class GraphNode extends Component {
   };
 
   render() {
-    console.log("graphNode", this.props);
     const empty = [{}];
     const open = Boolean(this.state.anchorEl);
     return this.props.connectDragSource(

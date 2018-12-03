@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styled from 'styled-components';
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
@@ -16,18 +17,9 @@ Component Requirements...
 
 const styles = {
   container: {
-    marginBottom: "10px",
+    marginBottom: "15px",
     borderRadius: "5px"
   },
-  paper: {
-    backgroundColor: "lightgrey",
-    padding: "10px 5px"
-    // maxWidth: "350px",
-    // maxHeight: "50px"
-  },
-  button: {
-    width: "100%"
-  }
 };
 
 const ITEM_HEIGHT = 48;
@@ -43,6 +35,8 @@ const nodeSource = {
     };
   }
 };
+
+
 
 // Props: text: string or Array of strings, color: string
 class GraphNode extends Component {
@@ -87,24 +81,21 @@ class GraphNode extends Component {
     const open = Boolean(this.state.anchorEl);
     return this.props.connectDragSource(
       <div key={this.props.graphKey} style={styles.container}>
-        <Paper
-          elevation={0}
-          style={{
-            ...styles.paper,
-            borderLeft: `8px solid ${this.props.color}`
-          }}
-        >
-          <div style={styles.button}>
-            {this.state.selectedItem}
-            <IconButton
-              aria-label="dropdown"
-              aria-owns={open ? "menu": undefined}
-              aria-haspopup="true"
-              onClick={e => this.handleClick(e)}
-              onChange={e => this.handleClose(e)}
-            >
-              <ArrowDropDown/>
-            </IconButton>
+        <Node color={this.props.color}>
+            <ConnectCircle className={"connect-circle"}/>
+            <ConnectCircle top className={"connect-circle"}/>
+            <Label>{this.state.selectedItem}</Label>
+            <IconWrapper>
+              <IconButton
+                aria-label="dropdown"
+                aria-owns={open ? "menu": undefined}
+                aria-haspopup="true"
+                onClick={e => this.handleClick(e)}
+                onChange={e => this.handleClose(e)}
+              >
+                <ArrowDropDown/>
+              </IconButton>
+            </IconWrapper>
             <Menu
               id="menu"
               anchorEl={this.state.anchorEl}
@@ -128,8 +119,7 @@ class GraphNode extends Component {
                 </MenuItem>
               ))}
             </Menu>
-          </div>
-        </Paper>
+        </Node>
       </div>
     );
   }
@@ -138,3 +128,45 @@ class GraphNode extends Component {
 export default DragSource(Types.NODE, nodeSource, connect => ({
   connectDragSource: connect.dragSource()
 }))(GraphNode);
+
+const Node = styled(Paper)`
+  border-radius: 3px;
+  border-left: 6px solid ${props => props.color ? props.color : 'grey'};
+  display: flex;
+  position: relative;
+`;
+const ConnectCircle = styled.div`
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin-left: auto;
+  right: 0;
+  margin-right: auto;
+  margin-bottom: -10px;
+  background: grey;
+  opacity: 0;
+  cursor: pointer;
+  &:hover {
+    opacity: 1;
+  }
+  ${props => props.active&&`
+    background: white;
+  `}
+  ${props => props.top&&`
+    top: 0;
+    bottom: auto;
+    margin-bottom: auto;
+    margin-top: -10px;
+  `}
+`;
+
+const IconWrapper = styled.div`
+  width: auto;
+`;
+
+const Label = styled.p`
+  flex: 1;
+`

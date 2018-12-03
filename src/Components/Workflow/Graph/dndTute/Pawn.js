@@ -7,7 +7,6 @@ const ItemTypes = {
 
 const pawnSource = {
   beginDrag(props) {
-    console.log("begindrag", props);
     return { props };
   }
 };
@@ -29,7 +28,6 @@ const styles = {
 
 class Pawn extends Component {
   render() {
-    console.log(this.props);
     return this.props.connectDragSource(
       <div
         id="pawn"

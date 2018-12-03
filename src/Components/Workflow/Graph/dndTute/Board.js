@@ -42,10 +42,8 @@ class Board extends Component {
     //pieces is an array of objects
     let chessPiece = pieces.map(piece => {
       if (x === piece.position[0] && y === piece.position[1]) {
-        console.log("RENDERME", piece);
         switch (piece.type) {
           case "knight":
-            console.log("RENDERKNIGHT");
             return <Knight id={piece.id} />;
           case "castle":
             return <Castle id={piece.id} />;
@@ -62,7 +60,6 @@ class Board extends Component {
   render() {
     const squares = [];
     for (let i = 0; i < 64; i++) {
-      // squares.push(this.renderSquare(i, this.props.piecePositions));
       squares.push(this.renderSquare(i, this.props.pieces));
     }
     return <div style={styles.container}>{squares}</div>;

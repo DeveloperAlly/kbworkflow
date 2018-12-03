@@ -15,8 +15,8 @@ class GraphMini extends Component {
       <div style={styles.container}>
         GraphMini
         <Pawn id="" type="pawn" />
-        <Knight id="" type="knight"/>
-        <Castle id="" type="castle"/>
+        <Knight id="" type="knight" />
+        <Castle id="" type="castle" />
       </div>
     );
   }

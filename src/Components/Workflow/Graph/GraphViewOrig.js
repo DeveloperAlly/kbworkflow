@@ -38,6 +38,7 @@ const styles = {
 const Header = styled.div`
   background: #f6f6f6;
   padding: 10px;
+  border-bottom: 1px solid black;
 `;
 const HeaderText = styled.h3`
   text-align: left;

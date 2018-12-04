@@ -5,7 +5,7 @@ import Board from "./dndTute/Board";
 const styles = {
   container: {
     padding: "10px",
-    backgroundColor: "lightpink",
+    backgroundColor: "#f6f6f6",
     height: "98%"
   },
   arrowBox: {
@@ -16,6 +16,31 @@ const styles = {
   }
 };
 
+const relationA = [
+  {
+    from: { anchor: "bottom" },
+    to: { anchor: "top", id: "ticketType0" }
+  },
+  {
+    from: { anchor: "bottom" },
+    to: { anchor: "top", id: "notification0" }
+  }
+];
+
+const relationB = [
+  {
+    from: { anchor: "bottom" },
+    to: { anchor: "top", id: "jobStatus0" }
+  }
+];
+
+const relationC = [
+  {
+    from: { anchor: "bottom" },
+    to: { anchor: "top", id: "ticketType0" }
+  }
+];
+
 class Graph extends Component {
   state = {
     nodes: [
@@ -23,22 +48,32 @@ class Graph extends Component {
         id: "chatbot0",
         type: "chatbot",
         position: [3, 0],
-        relations: []
+        relations: relationA
       },
       {
         id: "ticketType0",
         type: "ticketType",
-        position: [2, 2],
-        relations: []
+        position: [2, 3],
+        relations: relationB
       },
       {
         id: "notification0",
         type: "notification",
-        position: [4, 2],
+        position: [4, 3],
+        relations: []
+      },
+      {
+        id: "jobStatus0",
+        type: "jobStatus",
+        position: [2, 5],
         relations: []
       }
     ]
   };
+
+  UNSAFE_componentWillMount() {
+    console.log("RERENDER", this.state);
+  }
 
   makeUniqueId = type => {
     let count = this.state.nodes.filter(obj => obj.type === type).length;
@@ -109,11 +144,11 @@ class Graph extends Component {
     console.log("GRAPH", this.state.nodes);
     return (
       <div style={styles.container}>
-          <Board
-            moveNode={this.moveNode}
-            addNode={this.addNode}
-            nodes={this.state.nodes}
-          />
+        <Board
+          moveNode={this.moveNode}
+          addNode={this.addNode}
+          nodes={this.state.nodes}
+        />
       </div>
     );
   }

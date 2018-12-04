@@ -43,6 +43,10 @@ const Add = styled(Button)`
 const AddItem = styled(Add)`
   &&& {
     margin: 15px auto auto auto;
+    ${props => props.disabled&&`
+      background: #f6f6f6;
+      color: rgba(0,0,0,0.3);
+    `}
   }
 `;
 
@@ -115,6 +119,7 @@ class WorkflowHeader extends Component {
             <AddItem
               variant={"extendedFab"}
               onClick={e => this.addItem(e, this.state.itemText)}
+              disabled={this.state.itemText.trim().length < 1}
             >
               ADD ITEM
             </AddItem>

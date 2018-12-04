@@ -2,10 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
-// import VXDendo from "./VXDendo";
-// import VXGraph from "./VXGraph";
 import ListView from "./List/ListView";
-import GraphView from "./Graph/GraphViewOrig";
+import GraphView from "./Graph/GraphView";
 
 const styles = {
   page: {
@@ -58,8 +56,9 @@ class GraphContainer extends Component {
   }
 }
 
-const MapStateToProps = (state) => ({
+const MapStateToProps = state => ({
   list: state.list,
+  graph: state.graph
 });
 
 export default connect(MapStateToProps)(GraphContainer);

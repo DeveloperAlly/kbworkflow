@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { ArcherContainer, ArcherElement } from "react-archer";
-import VXDendo from "../VXDendo";
 
 const styles = {
   container: {

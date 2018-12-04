@@ -23,7 +23,7 @@ const relationA = [
   },
   {
     from: { anchor: "bottom" },
-    to: { anchor: "top", id: "notification0" }
+    to: { anchor: "top", id: "automationJob0" }
   }
 ];
 
@@ -37,7 +37,25 @@ const relationB = [
 const relationC = [
   {
     from: { anchor: "bottom" },
-    to: { anchor: "top", id: "ticketType0" }
+    to: { anchor: "top", id: "notification1" }
+  },
+  {
+    from: { anchor: "right" },
+    to: { anchor: "left", id: "errorHandler1" }
+  }
+];
+
+const relationD = [
+  {
+    from: { anchor: "bottom" },
+    to: { anchor: "top", id: "notification0" }
+  }
+];
+
+const relationE = [
+  {
+    from: { anchor: "bottom" },
+    to: { anchor: "top", id: "errorHandler0" }
   }
 ];
 
@@ -57,15 +75,33 @@ class Graph extends Component {
         relations: relationB
       },
       {
-        id: "notification0",
-        type: "notification",
+        id: "automationJob0",
+        type: "automationJob",
         position: [4, 3],
-        relations: []
+        relations: relationC
       },
       {
         id: "jobStatus0",
         type: "jobStatus",
         position: [2, 5],
+        relations: relationD
+      },
+      {
+        id: "notification0",
+        type: "notification",
+        position: [1, 8],
+        relations: relationE
+      },
+      {
+        id: "notification1",
+        type: "notification",
+        position: [4, 6],
+        relations: []
+      },
+      {
+        id: "errorHandler0",
+        type: "errorHandler",
+        position: [1, 10],
         relations: []
       }
     ]

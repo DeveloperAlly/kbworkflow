@@ -34,7 +34,7 @@ const ListReducer = (state = initialState, action) => {
   switch (action.type) {
     case "REMOVE_LIST_ITEM":
       let newIndex = state.selectedListIndex;
-      if(state.selectedListIndex === state.listItems.length-1){
+      if(state.selectedListIndex === state.listItems.length-1 && state.selectedListIndex !== 0){
         newIndex = state.selectedListIndex-1;
       }
       return {

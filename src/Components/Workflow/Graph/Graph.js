@@ -1,45 +1,42 @@
 import React, { Component } from "react";
+import { ArcherContainer } from "react-archer";
 import Board from "./dndTute/Board";
 
 const styles = {
   container: {
     padding: "10px",
-    // backgroundColor: "lightpink",
+    backgroundColor: "lightpink",
     height: "98%"
+  },
+  arrowBox: {
+    backgroundColor: "lightpink",
+    height: "100%",
+    display: "flex",
+    flexWrap: "wrap"
   }
 };
-
-/*
-Piece object {
-  id: unique
-  type: string
-  position: [0,0]
-  connections: [] //array of unique ids of other pieces this one is connected to
-  existing: boolean // flag to tell if this is a new piece or already on the board?
-}
-*/
 
 class Graph extends Component {
   state = {
     nodes: [
-      // {
-      //   id: "chatbot0",
-      //   type: "chatbot",
-      //   position: [3, 0],
-      //   relations: relationTest
-      // },
-      // {
-      //   id: "ticketType0",
-      //   type: "ticketType",
-      //   position: [2, 2],
-      //   relations: relationTest
-      // },
-      // {
-      //   id: "notification0",
-      //   type: "notification",
-      //   position: [4, 2],
-      //   relations: relationTest
-      // }
+      {
+        id: "chatbot0",
+        type: "chatbot",
+        position: [3, 0],
+        relations: []
+      },
+      {
+        id: "ticketType0",
+        type: "ticketType",
+        position: [2, 2],
+        relations: []
+      },
+      {
+        id: "notification0",
+        type: "notification",
+        position: [4, 2],
+        relations: []
+      }
     ]
   };
 
@@ -73,7 +70,7 @@ class Graph extends Component {
   };
 
   moveNode = (toX, toY, id) => {
-    console.log("move node");
+    console.log("move node & get position on screen");
     let nodes = this.state.nodes;
     let indexId = nodes
       .map(x => {
@@ -100,14 +97,23 @@ class Graph extends Component {
     console.log("deleteNode");
   };
 
+  addRelation = id => {
+    console.log("addRelation");
+  };
+
+  renderArrows = () => {
+    return <div>hello</div>;
+  };
+
   render() {
+    console.log("GRAPH", this.state.nodes);
     return (
       <div style={styles.container}>
-        <Board
-          moveNode={this.moveNode}
-          addNode={this.addNode}
-          nodes={this.state.nodes}
-        />
+          <Board
+            moveNode={this.moveNode}
+            addNode={this.addNode}
+            nodes={this.state.nodes}
+          />
       </div>
     );
   }

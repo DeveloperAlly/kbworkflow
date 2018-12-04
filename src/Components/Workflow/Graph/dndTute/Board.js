@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import { ArcherElement } from "react-archer";
 import { ArcherContainer } from "react-archer";
 import BoardSquare from "./BoardSquare";
 import GraphNode from "../GraphNode";
 
 const styles = {
   container: {
-    backgroundColor: "paleblue",
+    backgroundColor: "lightblue",
     height: "100%",
     width: "100%",
     display: "flex",
@@ -13,7 +14,8 @@ const styles = {
   },
   square: {
     width: "12.5%",
-    height: "5%"
+    height: "5%",
+    backgroundColor: "transparent"
   }
 };
 
@@ -43,7 +45,15 @@ class Board extends Component {
         console.log(node.id);
         switch (node.type) {
           case "ticketType":
-            return <GraphNode type="ticketType" id={node.id} relations={node.relations}/>;
+            return (
+              <ArcherElement id={node.id} relations={node.relations}>
+                <GraphNode
+                  type="ticketType"
+                  id={node.id}
+                  relations={node.relations}
+                />
+              </ArcherElement>
+            );
           case "automationJob":
             return <GraphNode type="automationJob" id={node.id} relations={node.relations}/>;
           case "chatbot":

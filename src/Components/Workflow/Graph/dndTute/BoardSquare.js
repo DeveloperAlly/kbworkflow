@@ -3,9 +3,6 @@ import { DropTarget } from "react-dnd";
 import Square from "./Square";
 
 const ItemTypes = {
-  PAWN: "pawn",
-  CASTLE: "castle",
-  KNIGHT: "knight",
   NODE: "node"
 };
 
@@ -16,8 +13,8 @@ const squareTarget = {
   canDrop(props, monitor) {
     // check if theres already a piece here or not
     let candrop = true;
-    props.nodes.map(piece => {
-      if (props.x === piece.position[0] && props.y === piece.position[1]) {
+    props.nodes.map(node => {
+      if (props.x === node.position[0] && props.y === node.position[1]) {
         return (candrop = false);
       }
     });
@@ -75,8 +72,4 @@ class BoardSquare extends Component {
   }
 }
 
-export default DropTarget(
-  [ItemTypes.KNIGHT, ItemTypes.CASTLE, ItemTypes.PAWN, ItemTypes.NODE],
-  squareTarget,
-  collect
-)(BoardSquare);
+export default DropTarget(ItemTypes.NODE, squareTarget, collect)(BoardSquare);

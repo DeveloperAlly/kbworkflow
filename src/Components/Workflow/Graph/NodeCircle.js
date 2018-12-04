@@ -21,12 +21,13 @@ const ConnectCircle = styled.div`
 
 class NodeCircle extends Component {
   render() {
-    console.log("CIRCLE PROPS", this.props);
     return (
       <ConnectCircle
         className={this.props.className}
         active={this.props.active}
-        onClick={() => {this.props.onClick()}}
+        onClick={() => {
+          this.props.onClick();
+        }}
       />
     );
   }

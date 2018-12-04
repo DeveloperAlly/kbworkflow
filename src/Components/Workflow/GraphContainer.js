@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
+import { ArcherContainer } from "react-archer";
 import VXDendo from "./VXDendo";
 import VXGraph from "./VXGraph";
 import ListView from "./List/ListView";
@@ -45,14 +46,16 @@ class GraphContainer extends Component {
     const headerText = this.props.list.listItems[this.props.list.selectedListIndex].label;
     return (
       <div style={styles.page}>
-        <Grid container spacing={16} justify="space-around">
-          <Paper elevation={3} style={styles.column_left}>
-            <ListView />
-          </Paper>
-          <Paper elevation={3} style={styles.column_center}>
-            <GraphView graphHeaderText={headerText}/>
-          </Paper>
-        </Grid>
+        <ArcherContainer strokeColor="#6ebdc2">
+          <Grid container spacing={16} justify="space-around">
+            <Paper elevation={3} style={styles.column_left}>
+              <ListView />
+            </Paper>
+            <Paper elevation={3} style={styles.column_center}>
+              <GraphView graphHeaderText={headerText}/>
+            </Paper>
+          </Grid>
+        </ArcherContainer>
       </div>
     );
   }

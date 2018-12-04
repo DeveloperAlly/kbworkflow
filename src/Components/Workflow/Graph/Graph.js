@@ -37,7 +37,7 @@ const relationC = [
   {
     from: { anchor: "bottom" },
     to: { anchor: "top", id: "notification1" }
-  },
+  }
   // {
   //   from: { anchor: "right" },
   //   to: { anchor: "left", id: "errorHandler1" }
@@ -113,30 +113,6 @@ class Graph extends Component {
   makeUniqueId = type => {
     let count = this.state.nodes.filter(obj => obj.type === type).length;
     return `${type}${count}`;
-  };
-
-  addPiece = (toX, toY, pieceProps) => {
-    let id = this.makeUniqueId(pieceProps.type);
-    let piece = Object.assign({}, pieceProps);
-    let newPiece = Object.assign(piece, {
-      id,
-      position: [toX, toY],
-      connections: []
-    });
-    let pieces = this.state.pieces;
-    pieces.push(newPiece);
-    this.setState({ pieces });
-  };
-
-  deletePiece = pieceId => {
-    let pieces = this.state.pieces;
-    let indexId = pieces
-      .map(x => {
-        return x.id;
-      })
-      .indexOf(pieceId);
-    let newPieces = pieces.splice(indexId, 1);
-    this.setState({ pieces: newPieces });
   };
 
   moveNode = (toX, toY, id) => {

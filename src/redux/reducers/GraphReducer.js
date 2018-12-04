@@ -20,37 +20,34 @@
 //   })
 // };
 
-//MY GRAPH ACTIONS
-// export const getGraphState = listItem => dispatch => {
-//
-// };
+// MY GRAPH ACTIONS
+export const getGraphNodes = listItem => dispatch => {
+
+};
+
+export const addGraphNode = node => dispatch => {
+
+};
+
 
 const initialState = {
-  listItems: [
-    { label: "Reset password" },
-    { label: "Migrate emails for clients" },
-    { label: "Deliver new password after reset" },
-    { label: "Permission for folders" }
-  ],
-  selectedListIndex: 0,
-  graphState: {
-    listItem: "Reset password"
+  graphNodes: {
+    nodes: [{}]
   }
 };
 
 const GraphReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "REMOVE_LIST_ITEM":
+    case "GET_GRAPHNODES":
       return {
-        ...state,
-        listItems: state.listItems.filter((item, index) => index !== action.payload)
+        ...state
       };
-    case "ADD_LIST_ITEM":
+    case "SET_GRAPH_NODES":
       return {
         ...state,
         listItems: [...state.listItems, action.payload]
       };
-    case "SELECT_ITEM":
+    case "ADD_GRAPH_NODE":
       return {
         ...state,
         selectedListIndex: action.payload

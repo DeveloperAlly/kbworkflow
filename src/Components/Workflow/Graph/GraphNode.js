@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { DragSource } from "react-dnd";
+import { ArcherElement } from "react-archer";
+import NodeCircle from "./NodeCircle";
+
 import Paper from "@material-ui/core/Paper";
 import IconButton from "@material-ui/core/IconButton";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
-import { DragSource } from "react-dnd";
-import { ArcherElement } from "react-archer";
-import NodeCircle from "./NodeCircle";
+import Close from "@material-ui/icons/CloseRounded";
 
 const styles = {
   container: {
@@ -135,12 +137,17 @@ class GraphNode extends Component {
     }
   };
 
+  handleDeleteNode = () => {
+
+  };
+
   render() {
     const open = Boolean(this.state.anchorEl);
     return this.props.connectDragSource(
       <div key={this.props.id} style={styles.container}>
         <ArcherElement id={this.props.id} relations={this.props.relations}>
           <Node color={options[this.props.type].color}>
+            <CloseIcon onClick={this.handleDeleteNode}/>
             <StyledCircle
               top
               active={this.state.activeTop}
@@ -232,7 +239,26 @@ const StyledCircle = styled(NodeCircle)`
 const IconWrapper = styled.div`
   width: auto;
 `;
-
 const Label = styled.p`
   flex: 1;
+`;
+const CloseIcon = styled(Close)`
+  && {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: -16px;
+    top: -10px;
+    background: white;
+    border-radius: 50%;
+    font-size: 10px;
+    opacity: 0;
+    pointer-events: none;
+    cursor: pointer;
+    ${Node}:hover & {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+ 
 `;

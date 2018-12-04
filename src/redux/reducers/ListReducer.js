@@ -10,13 +10,22 @@ export const selectItem = index => dispatch => {
     payload: index
   })
 };
+export const addItem = text => dispatch => {
+  const newItem = {
+    label: text
+  }
+  dispatch({
+    type: "ADD_LIST_ITEM",
+    payload: newItem
+  })
+};
 
 const initialState = {
   listItems: [
     { label: "Reset password" },
     { label: "Migrate emails for clients" },
     { label: "Deliver new password after reset" },
-    { label: "permission for folders" }
+    { label: "Permission for folders" }
   ],
   selectedListIndex: 0
 };
@@ -27,6 +36,11 @@ const ListReducer = (state = initialState, action) => {
       return {
         ...state,
         listItems: state.listItems.filter((item, index) => index !== action.payload)
+      };
+    case "ADD_LIST_ITEM":
+      return {
+        ...state,
+        listItems: [...state.listItems, action.payload]
       };
     case "SELECT_ITEM":
       return {

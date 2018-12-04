@@ -46,16 +46,16 @@ class GraphContainer extends Component {
     const headerText = this.props.list.listItems[this.props.list.selectedListIndex].label;
     return (
       <div style={styles.page}>
-        <ArcherContainer strokeColor="#6ebdc2">
-          <Grid container spacing={16} justify="space-around">
-            <Paper elevation={3} style={styles.column_left}>
-              <ListView />
-            </Paper>
-            <Paper elevation={3} style={styles.column_center}>
+        <Grid container spacing={16} justify="space-around">
+          <Paper elevation={3} style={styles.column_left}>
+            <ListView />
+          </Paper>
+          <Paper elevation={3} style={styles.column_center}>
+            <ArcherContainer strokeColor="#6ebdc2">
               <GraphView graphHeaderText={headerText}/>
-            </Paper>
-          </Grid>
-        </ArcherContainer>
+            </ArcherContainer>
+          </Paper>
+        </Grid>
       </div>
     );
   }

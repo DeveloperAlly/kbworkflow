@@ -4,7 +4,7 @@ import HTML5Backend from "react-dnd-html5-backend";
 import WorkflowPage from "./Components/Workflow/WorkflowPage";
 import "./App.css";
 import { Provider } from "react-redux";
-import { store } from './redux/'
+import { store } from "./redux/";
 
 class App extends Component {
   render() {

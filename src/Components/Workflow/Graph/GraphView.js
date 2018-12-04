@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Grid from "@material-ui/core/Grid";
 import { ArcherContainer } from "react-archer";
-// import { DragDropContext } from "react-dnd";
-// import HTML5Backend from "react-dnd-html5-backend";
 import Graph from "./Graph";
 import GraphMini from "./GraphMini";
 import GraphElements from "./GraphElements";

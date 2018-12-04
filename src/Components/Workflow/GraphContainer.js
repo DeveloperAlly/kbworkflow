@@ -42,7 +42,9 @@ const styles = {
 
 class GraphContainer extends Component {
   render() {
-    const headerText = this.props.list.listItems[this.props.list.selectedListIndex].label;
+    const headerText = this.props.list.listItems[
+      this.props.list.selectedListIndex
+    ].label;
     return (
       <div style={styles.page}>
         <Grid container spacing={16} justify="space-around">
@@ -50,7 +52,7 @@ class GraphContainer extends Component {
             <ListView />
           </Paper>
           <Paper elevation={3} style={styles.column_center}>
-            <GraphView graphHeaderText={headerText}/>
+            <GraphView graphHeaderText={headerText} />
           </Paper>
         </Grid>
       </div>
@@ -58,8 +60,8 @@ class GraphContainer extends Component {
   }
 }
 
-const MapStateToProps = (state) => ({
-  list: state.list,
+const MapStateToProps = state => ({
+  list: state.list
 });
 
 export default connect(MapStateToProps)(GraphContainer);

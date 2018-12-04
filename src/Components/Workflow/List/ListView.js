@@ -6,6 +6,8 @@ import PropTypes from "prop-types";
 import { removeItem, selectItem } from "../../../redux/reducers/ListReducer";
 
 import More from "@material-ui/icons/MoreVert";
+import Close from "@material-ui/icons/Close";
+import Delete from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
 
 const Wrapper = styled.div``;
@@ -61,7 +63,7 @@ class ListView extends Component {
               <Label>{listItem.label}</Label>
               <Dots>
                 <IconButton>
-                  <More onClick={(e) => this.handleRemove(e, i)}/>
+                  <Delete onClick={(e) => this.handleRemove(e, i)}/>
                 </IconButton>
               </Dots>
             </ListItem>

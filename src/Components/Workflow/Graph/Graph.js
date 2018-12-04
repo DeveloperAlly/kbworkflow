@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { ArcherContainer } from "react-archer";
 import Board from "./dndTute/Board";
 
 const styles = {

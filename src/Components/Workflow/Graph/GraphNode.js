@@ -6,7 +6,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import ArrowDropDown from "@material-ui/icons/ArrowDropDown";
 import { DragSource } from "react-dnd";
-import { ArcherContainer, ArcherElement } from "react-archer";
+import { ArcherElement } from "react-archer";
 import NodeCircle from "./NodeCircle";
 
 const styles = {
@@ -27,12 +27,11 @@ const tt_options = [
 
 const aj_options = [
   "Automation Job",
-  "Automation1",
-  "Open",
-  "In Progress",
-  "Resolved",
-  "Closed",
-  "Blocked"
+  "Delete Account",
+  "Reset PW",
+  "Reset Server",
+  "Send Resolution",
+  "Notify User"
 ];
 
 const cb_options = [
@@ -56,10 +55,11 @@ const eh_options = [
 
 const n_options = [
   "Notification",
-  "New chat",
-  "New ticket",
+  "Success",
+  "Message",
   "Warning",
-  "Message"
+  "New chat",
+  "New ticket"
 ];
 
 const js_options = [

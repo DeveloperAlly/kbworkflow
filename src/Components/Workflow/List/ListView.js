@@ -35,6 +35,10 @@ const Label = styled.p`
 `;
 const Dots = styled.div`
   width: auto;
+  opacity: 0;
+  ${ListItem}:hover & {
+    opacity: 1;
+  }
 `;
 
 class ListView extends Component {

@@ -33,8 +33,13 @@ const initialState = {
 const ListReducer = (state = initialState, action) => {
   switch (action.type) {
     case "REMOVE_LIST_ITEM":
+      let newIndex = state.selectedListIndex;
+      if(state.selectedListIndex === state.listItems.length-1){
+        newIndex = state.selectedListIndex-1;
+      }
       return {
         ...state,
+        selectedListIndex: newIndex,
         listItems: state.listItems.filter((item, index) => index !== action.payload)
       };
     case "ADD_LIST_ITEM":

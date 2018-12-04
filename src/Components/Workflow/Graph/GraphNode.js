@@ -18,17 +18,16 @@ const styles = {
 
 const tt_options = [
   "Ticket Type",
-  "New",
-  "Open",
-  "In Progress",
-  "Resolved",
-  "Closed",
-  "Blocked"
+  "Standalone",
+  "Incident",
+  "ATR Problem",
+  "Task Template",
+  "SNOW"
 ];
 
 const aj_options = [
   "Automation Job",
-  "New",
+  "Automation1",
   "Open",
   "In Progress",
   "Resolved",
@@ -38,32 +37,29 @@ const aj_options = [
 
 const cb_options = [
   "Chatbot",
-  "New",
-  "Open",
-  "In Progress",
-  "Resolved",
-  "Closed",
-  "Blocked"
+  "Am chatting",
+  "Disabled",
+  "Hello",
+  "Help",
+  "Busy today"
 ];
 
 const eh_options = [
   "Error Handler",
-  "New",
-  "Open",
-  "In Progress",
-  "Resolved",
-  "Closed",
-  "Blocked"
+  "Server Error",
+  "ML error",
+  "Warning",
+  "Ticket error",
+  "Unknown error",
+  "Pipeline error"
 ];
 
 const n_options = [
   "Notification",
-  "New",
-  "Open",
-  "In Progress",
-  "Resolved",
-  "Closed",
-  "Blocked"
+  "New chat",
+  "New ticket",
+  "Warning",
+  "Message"
 ];
 
 const js_options = [
@@ -77,12 +73,12 @@ const js_options = [
 ];
 
 const options = {
-  ticketType: { color: "green", options: tt_options },
-  automationJob: { color: "purple", options: aj_options },
-  chatbot: { color: "grey", options: cb_options },
-  errorHandler: { color: "yellow", options: eh_options },
-  notification: { color: "blue", options: n_options },
-  jobStatus: { color: "orange", options: js_options }
+  ticketType: { color: "#34a95f", options: tt_options },
+  automationJob: { color: "#6938a4", options: aj_options },
+  chatbot: { color: "#ffee84", options: cb_options },
+  errorHandler: { color: "red", options: eh_options },
+  notification: { color: "orange", options: n_options },
+  jobStatus: { color: "#5567e7", options: js_options }
 };
 
 const ITEM_HEIGHT = 48;

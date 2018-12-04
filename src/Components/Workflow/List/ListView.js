@@ -61,7 +61,7 @@ class ListView extends Component {
               <Label>{listItem.label}</Label>
               <Dots>
                 <IconButton>
-                  <Delete onClick={(e) => this.handleRemove(e, i)}/>
+                  <Delete onClick={(e) => {this.handleRemove(e, i)}} />
                 </IconButton>
               </Dots>
             </ListItem>

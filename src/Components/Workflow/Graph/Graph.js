@@ -39,10 +39,10 @@ const relationC = [
     from: { anchor: "bottom" },
     to: { anchor: "top", id: "notification1" }
   },
-  {
-    from: { anchor: "right" },
-    to: { anchor: "left", id: "errorHandler1" }
-  }
+  // {
+  //   from: { anchor: "right" },
+  //   to: { anchor: "left", id: "errorHandler1" }
+  // }
 ];
 
 const relationD = [

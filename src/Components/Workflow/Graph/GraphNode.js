@@ -9,14 +9,6 @@ import { DragSource } from "react-dnd";
 import { ArcherContainer, ArcherElement } from "react-archer";
 import NodeCircle from "./NodeCircle";
 
-/*
-Component Requirements...
--> Drag and Drop
-    - paper elevation changes
-    - component becomes movable
-
-*/
-
 const styles = {
   container: {
     marginBottom: "15px",
@@ -117,57 +109,58 @@ function collect(connect, monitor) {
 class GraphNode extends Component {
   state = {
     anchorEl: null,
-    selectedIndex: 0
+    selectedIndex: 0,
+    activeTop: false,
+    activeBottom: false
   };
 
   renderDropdown = () => {
     //move stuff here
   };
 
-  handleOnDragStart = (e, id) => {
-    console.log("dragstart", id);
-    e.dataTransfer.setData("id", id);
-  };
-
-  handleOnDrop = e => {
-    console.log("drop", e);
-    let id = e.dataTransfer.getData("id");
-  };
-
-  handleClick = event => {
+  handleOpenMenu = event => {
     console.log("clicked me", event.currentTarget);
     this.setState({ anchorEl: event.currentTarget });
   };
 
-  handleClose = event => {
+  handleCloseMenu = event => {
     console.log("close event", event.target);
     this.setState({ anchorEl: null });
-  };
-
-  handleChange = event => {
-    console.log("change", event.target.value);
-  };
-
-  handleSelect = e => {
-    console.log("selected me", e.target);
   };
 
   handleMenuItemClick = (event, index) => {
     this.setState({ selectedIndex: index, anchorEl: null });
   };
 
+  handleNodeClick = position => {
+    if (position === "top") {
+      this.setState({ activeTop: !this.state.activeTop });
+    } else if (position === "bottom") {
+      this.setState({ activeBottom: !this.state.activeBottom });
+    }
+  };
+
   render() {
-    const empty = [{}];
+    console.log("graphNode", this.props);
     const open = Boolean(this.state.anchorEl);
     return this.props.connectDragSource(
       <div key={this.props.id} style={styles.container}>
-        <ArcherElement
-          id={this.props.id}
-          relations={this.props.relations}
-        >
+        <ArcherElement id={this.props.id} relations={this.props.relations}>
           <Node color={options[this.props.type].color}>
-            <StyledCircle top/>
-            <StyledCircle />
+            <StyledCircle
+              top
+              active={this.state.activeTop}
+              onClick={() => {
+                this.handleNodeClick("top");
+              }}
+            />
+            <StyledCircle
+              id={`${this.props.id}nodeBot`}
+              active={this.state.activeBottom}
+              onClick={() => {
+                this.handleNodeClick("bottom");
+              }}
+            />
             <Label>
               {options[this.props.type].options[this.state.selectedIndex]}
             </Label>
@@ -176,8 +169,8 @@ class GraphNode extends Component {
                 aria-label="dropdown"
                 aria-owns={open ? "menu": undefined}
                 aria-haspopup="true"
-                onClick={e => this.handleClick(e)}
-                onChange={e => this.handleClose(e)}
+                onClick={e => this.handleOpenMenu(e)}
+                onChange={e => this.handleCloseMenu(e)}
               >
                 <ArrowDropDown/>
               </IconButton>
@@ -186,7 +179,7 @@ class GraphNode extends Component {
               id="menu"
               anchorEl={this.state.anchorEl}
               open={open}
-              onClick={event => this.handleClose(event)}
+              onClick={event => this.handleCloseMenu(event)}
               PaperProps={{
                 style: {
                   maxHeight: ITEM_HEIGHT * 4.5,

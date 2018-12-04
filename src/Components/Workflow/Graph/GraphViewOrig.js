@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import Grid from "@material-ui/core/Grid";
+import { ArcherContainer } from "react-archer";
 // import { DragDropContext } from "react-dnd";
 // import HTML5Backend from "react-dnd-html5-backend";
 import Graph from "./Graph";
@@ -34,14 +35,6 @@ const styles = {
   }
 };
 
-// export function observe(receive) {
-//   setInterval(
-//     () =>
-//       receive([Math.floor(Math.random() * 8), Math.floor(Math.random() * 8)]),
-//     500
-//   );
-// }
-
 const Header = styled.div`
   background: #f6f6f6;
   padding: 10px;
@@ -63,7 +56,7 @@ class GraphView extends Component {
         <Grid container>
           <Grid item xs={9}>
             <div style={styles.graph}>
-              <Graph children="this is the graph" />
+              <Graph />
             </div>
           </Grid>
           <Grid item xs={3}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from "react";
 import styled from 'styled-components';
 
 const ConnectCircle = styled.div`
@@ -11,15 +11,25 @@ const ConnectCircle = styled.div`
   &:hover {
     opacity: 1;
   }
-  ${props => props.active&&`
+  ${props => props.active &&
+    `
     background: white;
     opacity: 1;
     border: 1px solid black;
   `}
 `;
 
-const NodeCircle = ({className, active, clickFunction}) => (
-  <ConnectCircle className={className} active={active} onClick={() => clickFunction()}/>
-);
+class NodeCircle extends Component {
+  render() {
+    console.log("CIRCLE PROPS", this.props);
+    return (
+      <ConnectCircle
+        className={this.props.className}
+        active={this.props.active}
+        onClick={() => {this.props.onClick()}}
+      />
+    );
+  }
+}
 
 export default NodeCircle;

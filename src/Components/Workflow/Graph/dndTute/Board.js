@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import { ArcherContainer } from "react-archer";
 import BoardSquare from "./BoardSquare";
 import GraphNode from "../GraphNode";
-// import Knight from "./Knight";
-// import Castle from "./Castle";
-// import Pawn from "./Pawn";
 
 const styles = {
   container: {
@@ -65,34 +62,15 @@ class Board extends Component {
     return nodes;
   };
 
-  renderPiece = (x, y, pieces) => {
-    //pieces is an array of objects
-    // let chessPiece = pieces.map(piece => {
-    //   if (x === piece.position[0] && y === piece.position[1]) {
-    //     switch (piece.type) {
-    //       case "knight":
-    //         return <Knight id={piece.id} />;
-    //       case "castle":
-    //         return <Castle id={piece.id} />;
-    //       case "pawn":
-    //         return <Pawn id={piece.id} />;
-    //       default:
-    //         return null;
-    //     }
-    //   }
-    // });
-    // return chessPiece;
-  };
-
   render() {
     const nodes = [];
     for (let i = 0; i < 160; i++) {
       nodes.push(this.renderSquare(i, this.props.nodes));
     }
     return (
-      // <ArcherContainer strokeColor="#6ebdc2">
-        <div style={styles.container}>{nodes}</div>
-      // </ArcherContainer>
+      <div style={styles.container}>
+        {nodes}
+      </div>
     );
   }
 }

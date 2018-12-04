@@ -32,6 +32,7 @@ export const addGraphNode = node => dispatch => {
 
 const initialState = {
   graphNodes: {
+    listItem: 0,
     nodes: [{}]
   }
 };

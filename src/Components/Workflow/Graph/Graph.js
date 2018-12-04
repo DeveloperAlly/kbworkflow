@@ -103,11 +103,49 @@ class Graph extends Component {
         position: [1, 10],
         relations: []
       }
+    ],
+    nodes1: [
+      {
+        id: "chatbot0",
+        type: "chatbot",
+        position: [3, 0],
+        relations: relationA
+      },
+      {
+        id: "ticketType0",
+        type: "ticketType",
+        position: [2, 3],
+        relations: relationB
+      },
+      {
+        id: "automationJob0",
+        type: "automationJob",
+        position: [4, 3],
+        relations: relationC
+      },
+      {
+        id: "jobStatus0",
+        type: "jobStatus",
+        position: [2, 5],
+        relations: relationD
+      },
+      {
+        id: "notification0",
+        type: "notification",
+        position: [1, 8],
+        relations: relationE
+      },
+      {
+        id: "notification1",
+        type: "notification",
+        position: [4, 6],
+        relations: []
+      }
     ]
   };
 
   UNSAFE_componentWillMount() {
-    console.log("RERENDER", this.state);
+    console.log("RERENDER", this.props);
   }
 
   makeUniqueId = type => {

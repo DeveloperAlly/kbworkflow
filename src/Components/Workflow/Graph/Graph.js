@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Board from "./dndTute/Board";
+import Board from "./Board";
 
 const styles = {
   container: {

@@ -1,9 +1,9 @@
-import styled from 'styled-components';
-import { TextField as MuiTextField } from '@material-ui/core';
+import styled from "styled-components";
+import { TextField as MuiTextField } from "@material-ui/core";
 
 const StyledTextField = styled(MuiTextField)`
   &&&&& {
-    background: ${props => props.backgroundColor || '#f6f6f6'};
+    background: ${props => props.backgroundColor || "#f6f6f6"};
     border-radius: 500px;
     padding: ${props => props.padding || "7px 15px"};
     > div {
@@ -15,7 +15,6 @@ const StyledTextField = styled(MuiTextField)`
       }
     }
   }
-  
 `;
 
 export default StyledTextField

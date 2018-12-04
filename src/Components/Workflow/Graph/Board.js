@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { ArcherElement } from "react-archer";
-import { ArcherContainer } from "react-archer";
 import BoardSquare from "./BoardSquare";
-import GraphNode from "../GraphNode";
+import GraphNode from "./GraphNode";
 
 const styles = {
   container: {

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 import { removeItem, selectItem } from "../../../redux/reducers/ListReducer";
 
@@ -72,8 +72,11 @@ class ListView extends Component {
   }
 }
 
-const MapStateToProps = (state) => ({
+const MapStateToProps = state => ({
   list: state.list
 });
 
-export default connect(MapStateToProps, {removeItem, selectItem})(ListView);
+export default connect(
+  MapStateToProps,
+  { removeItem, selectItem }
+)(ListView);

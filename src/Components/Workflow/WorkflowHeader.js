@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import SearchBar from "./Templates/SearchBar";
 import styled from "styled-components";
 
 import TextField from "../../StyledComponents/TextField";

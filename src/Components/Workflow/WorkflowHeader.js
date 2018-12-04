@@ -77,7 +77,8 @@ class WorkflowHeader extends Component {
   addItem = (e, text) => {
     this.props.addItem(text);
     this.setState({
-      dialogOpen: false
+      dialogOpen: false,
+      itemText: ""
     })
   };
 

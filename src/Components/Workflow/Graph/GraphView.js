@@ -43,7 +43,9 @@ const HeaderText = styled.h3`
   margin: 0;
   color: rgba(0, 0, 0, 0.7);
   padding-left: 20px;
-  ${props => props.center&&`
+  ${props =>
+    props.center &&
+    `
     text-align: center;
     padding-left: 0;
   `}
@@ -65,7 +67,7 @@ class GraphView extends Component {
           <Grid item xs={9}>
             <ArcherContainer strokeColor="#6ebdc2">
               <div style={styles.graph}>
-                <Graph />
+                <Graph props={this.props} />
               </div>
             </ArcherContainer>
           </Grid>

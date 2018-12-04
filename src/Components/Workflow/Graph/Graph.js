@@ -37,7 +37,7 @@ const relationC = [
   {
     from: { anchor: "bottom" },
     to: { anchor: "top", id: "notification1" }
-  },
+  }
   // {
   //   from: { anchor: "right" },
   //   to: { anchor: "left", id: "errorHandler1" }
@@ -103,40 +103,54 @@ class Graph extends Component {
         position: [1, 10],
         relations: []
       }
+    ],
+    nodes1: [
+      {
+        id: "chatbot0",
+        type: "chatbot",
+        position: [3, 0],
+        relations: relationA
+      },
+      {
+        id: "ticketType0",
+        type: "ticketType",
+        position: [2, 3],
+        relations: relationB
+      },
+      {
+        id: "automationJob0",
+        type: "automationJob",
+        position: [4, 3],
+        relations: relationC
+      },
+      {
+        id: "jobStatus0",
+        type: "jobStatus",
+        position: [2, 5],
+        relations: relationD
+      },
+      {
+        id: "notification0",
+        type: "notification",
+        position: [1, 8],
+        relations: relationE
+      },
+      {
+        id: "notification1",
+        type: "notification",
+        position: [4, 6],
+        relations: []
+      }
     ]
   };
 
   UNSAFE_componentWillMount() {
-    console.log("RERENDER", this.state);
+    console.log("RERENDER", this.props);
   }
 
   makeUniqueId = type => {
     let count = this.state.nodes.filter(obj => obj.type === type).length;
     return `${type}${count}`;
-  };
-
-  addPiece = (toX, toY, pieceProps) => {
-    let id = this.makeUniqueId(pieceProps.type);
-    let piece = Object.assign({}, pieceProps);
-    let newPiece = Object.assign(piece, {
-      id,
-      position: [toX, toY],
-      connections: []
-    });
-    let pieces = this.state.pieces;
-    pieces.push(newPiece);
-    this.setState({ pieces });
-  };
-
-  deletePiece = pieceId => {
-    let pieces = this.state.pieces;
-    let indexId = pieces
-      .map(x => {
-        return x.id;
-      })
-      .indexOf(pieceId);
-    let newPieces = pieces.splice(indexId, 1);
-    this.setState({ pieces: newPieces });
   };
 
   moveNode = (toX, toY, id) => {

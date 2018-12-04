@@ -89,7 +89,6 @@ const Types = {
 
 const nodeSource = {
   beginDrag(props) {
-    console.log("BEGIN DRAG", props);
     return { props };
   }
 };
@@ -137,7 +136,6 @@ class GraphNode extends Component {
   };
 
   render() {
-    console.log("graphNode", this.props);
     const open = Boolean(this.state.anchorEl);
     return this.props.connectDragSource(
       <div key={this.props.id} style={styles.container}>
@@ -163,12 +161,12 @@ class GraphNode extends Component {
             <IconWrapper>
               <IconButton
                 aria-label="dropdown"
-                aria-owns={open ? "menu": undefined}
+                aria-owns={open ? "menu" : undefined}
                 aria-haspopup="true"
                 onClick={e => this.handleOpenMenu(e)}
                 onChange={e => this.handleCloseMenu(e)}
               >
-                <ArrowDropDown/>
+                <ArrowDropDown />
               </IconButton>
             </IconWrapper>
             <Menu
@@ -183,7 +181,7 @@ class GraphNode extends Component {
                 }
               }}
             >
-              {options[this.props.type].options.map((option,i) => (
+              {options[this.props.type].options.map((option, i) => (
                 <MenuItem
                   key={option}
                   value={option}

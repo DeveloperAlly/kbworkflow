@@ -11,7 +11,8 @@ const ConnectCircle = styled.div`
   &:hover {
     opacity: 1;
   }
-  ${props => props.active &&
+  ${props =>
+    props.active &&
     `
     background: white;
     opacity: 1;

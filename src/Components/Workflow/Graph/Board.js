@@ -41,28 +41,61 @@ class Board extends Component {
   renderNode = (x, y) => {
     let nodes = this.props.nodes.map(node => {
       if (x === node.position[0] && y === node.position[1]) {
-        console.log(node.id);
         switch (node.type) {
           case "ticketType":
             return (
-              <ArcherElement id={node.id} relations={node.relations}>
-                <GraphNode
-                  type="ticketType"
-                  id={node.id}
-                  relations={node.relations}
-                />
-              </ArcherElement>
+              <GraphNode
+                key={node.id}
+                type="ticketType"
+                id={node.id}
+                relations={node.relations}
+              />
             );
           case "automationJob":
-            return <GraphNode type="automationJob" id={node.id} relations={node.relations}/>;
+            return (
+              <GraphNode
+                key={node.id}
+                type="automationJob"
+                id={node.id}
+                relations={node.relations}
+              />
+            );
           case "chatbot":
-            return <GraphNode type="chatbot" id={node.id} relations={node.relations}/>;
+            return (
+              <GraphNode
+                key={node.id}
+                type="chatbot"
+                id={node.id}
+                relations={node.relations}
+              />
+            );
           case "errorHandler":
-            return <GraphNode type="errorHandler" id={node.id} relations={node.relations}/>;
+            return (
+              <GraphNode
+                key={node.id}
+                type="errorHandler"
+                id={node.id}
+                relations={node.relations}
+              />
+            );
           case "notification":
-            return <GraphNode type="notification" id={node.id} relations={node.relations}/>;
+            return (
+              <GraphNode
+                key={node.id}
+                type="notification"
+                id={node.id}
+                relations={node.relations}
+              />
+            );
           case "jobStatus":
-            return <GraphNode type="jobStatus" id={node.id} relations={node.relations}/>;
+            return (
+              <GraphNode
+                key={node.id}
+                type="jobStatus"
+                id={node.id}
+                relations={node.relations}
+              />
+            );
           default:
             return null;
         }
@@ -76,11 +109,7 @@ class Board extends Component {
     for (let i = 0; i < 160; i++) {
       nodes.push(this.renderSquare(i, this.props.nodes));
     }
-    return (
-      <div style={styles.container}>
-        {nodes}
-      </div>
-    );
+    return <div style={styles.container}>{nodes}</div>;
   }
 }
 

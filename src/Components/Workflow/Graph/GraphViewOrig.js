@@ -56,9 +56,11 @@ class GraphView extends Component {
         </Header>
         <Grid container>
           <Grid item xs={9}>
-            <div style={styles.graph}>
-              <Graph />
-            </div>
+            <ArcherContainer strokeColor="#6ebdc2">
+              <div style={styles.graph}>
+                <Graph />
+              </div>
+            </ArcherContainer>
           </Grid>
           <Grid item xs={3}>
             <Grid container direction="column" style={styles.right_container}>

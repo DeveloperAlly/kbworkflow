@@ -51,9 +51,7 @@ class GraphContainer extends Component {
             <ListView />
           </Paper>
           <Paper elevation={3} style={styles.column_center}>
-            <ArcherContainer strokeColor="#6ebdc2">
-              <GraphView graphHeaderText={headerText}/>
-            </ArcherContainer>
+            <GraphView graphHeaderText={headerText}/>
           </Paper>
         </Grid>
       </div>

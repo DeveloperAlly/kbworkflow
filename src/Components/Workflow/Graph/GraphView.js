@@ -43,6 +43,15 @@ const HeaderText = styled.h3`
   margin: 0;
   color: rgba(0, 0, 0, 0.7);
   padding-left: 20px;
+  ${props => props.center&&`
+    text-align: center;
+    padding-left: 0;
+  `}
+`;
+
+const Elements = styled.div`
+  overflow: auto;
+  height: 600px;
 `;
 
 class GraphView extends Component {
@@ -65,9 +74,12 @@ class GraphView extends Component {
               <div style={styles.graph_mini}>
                 <GraphMini />
               </div>
-              <div style={styles.graph_elements}>
+              <Elements>
+                <Header>
+                  <HeaderText center>Elements</HeaderText>
+                </Header>
                 <GraphElements />
-              </div>
+              </Elements>
             </Grid>
           </Grid>
         </Grid>

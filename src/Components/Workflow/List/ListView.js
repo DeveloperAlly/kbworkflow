@@ -56,20 +56,23 @@ class ListView extends Component {
     return (
       <Wrapper>
         <List>
-          {listItems.map((listItem, i) => (
-            <ListItem
-              key={i}
-              selected={selectedListIndex === i}
-              onClick={() => selectItem(i)}
-            >
-              <Label>{listItem.label}</Label>
-              <Dots>
-                <IconButton>
-                  <Delete onClick={(e) => {this.handleRemove(e, i)}} />
-                </IconButton>
-              </Dots>
-            </ListItem>
-          ))}
+          {listItems.length > 0
+            ? listItems.map((listItem, i) => (
+                <ListItem
+                  key={i}
+                  selected={selectedListIndex === i}
+                  onClick={() => selectItem(i)}
+                >
+                  <Label>{listItem.label}</Label>
+                  <Dots>
+                    <IconButton>
+                      <Delete onClick={(e) => {this.handleRemove(e, i)}} />
+                    </IconButton>
+                  </Dots>
+                </ListItem>
+              ))
+            : <div>No Options</div>
+          }
         </List>
       </Wrapper>
     );

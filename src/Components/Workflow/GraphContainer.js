@@ -40,9 +40,7 @@ const styles = {
 
 class GraphContainer extends Component {
   render() {
-    const headerText = this.props.list.listItems[
-      this.props.list.selectedListIndex
-    ].label;
+    const headerText = this.props.list.listItems.length > 0 ? this.props.list.listItems[this.props.list.selectedListIndex].label : "No Selection";
     return (
       <div style={styles.page}>
         <Grid container spacing={16} justify="space-around">

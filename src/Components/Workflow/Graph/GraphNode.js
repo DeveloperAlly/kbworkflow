@@ -9,14 +9,6 @@ import { DragSource } from "react-dnd";
 import { ArcherContainer, ArcherElement } from "react-archer";
 import NodeCircle from "./NodeCircle";
 
-/*
-Component Requirements...
--> Drag and Drop
-    - paper elevation changes
-    - component becomes movable
-
-*/
-
 const styles = {
   container: {
     marginBottom: "15px",

@@ -32,12 +32,6 @@ const relationTest = [
 
 class Graph extends Component {
   state = {
-    pieces: [
-      { id: "castle0", type: "castle", position: [0, 0], connections: [] },
-      { id: "knight0", type: "knight", position: [1, 1], connections: [] },
-      { id: "pawn0", type: "pawn", position: [1, 0], connections: [] },
-      { id: "pawn1", type: "pawn", position: [2, 0], connections: [] }
-    ],
     nodes: [
       // {
       //   id: "chatbot0",

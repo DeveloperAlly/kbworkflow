@@ -5,7 +5,7 @@ const styles = {
   container: {
     padding: "10px",
     // backgroundColor: "lightpink",
-    height: "98%" //what ??
+    height: "98%"
   }
 };
 
@@ -18,17 +18,6 @@ Piece object {
   existing: boolean // flag to tell if this is a new piece or already on the board?
 }
 */
-
-const relationTest = [
-  {
-    from: { anchor: "bottom" },
-    to: { anchor: "top", id: "ticketType0" }
-  }
-  // {
-  //   from: {anchor: "bottom" },
-  //   to: { anchor: "top", id: "notification0"}
-  // }
-];
 
 class Graph extends Component {
   state = {

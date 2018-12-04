@@ -109,7 +109,9 @@ function collect(connect, monitor) {
 class GraphNode extends Component {
   state = {
     anchorEl: null,
-    selectedIndex: 0
+    selectedIndex: 0,
+    activeTop: false,
+    activeBottom: false
   };
 
   renderDropdown = () => {
@@ -130,18 +132,35 @@ class GraphNode extends Component {
     this.setState({ selectedIndex: index, anchorEl: null });
   };
 
+  handleNodeClick = position => {
+    if (position === "top") {
+      this.setState({ activeTop: !this.state.activeTop });
+    } else if (position === "bottom") {
+      this.setState({ activeBottom: !this.state.activeBottom });
+    }
+  };
+
   render() {
     console.log("graphNode", this.props);
     const open = Boolean(this.state.anchorEl);
     return this.props.connectDragSource(
       <div key={this.props.id} style={styles.container}>
-        <ArcherElement
-          id={this.props.id}
-          relations={this.props.relations}
-        >
+        <ArcherElement id={this.props.id} relations={this.props.relations}>
           <Node color={options[this.props.type].color}>
-            <StyledCircle top/>
-            <StyledCircle />
+            <StyledCircle
+              top
+              active={this.state.activeTop}
+              onClick={() => {
+                this.handleNodeClick("top");
+              }}
+            />
+            <StyledCircle
+              id={`${this.props.id}nodeBot`}
+              active={this.state.activeBottom}
+              onClick={() => {
+                this.handleNodeClick("bottom");
+              }}
+            />
             <Label>
               {options[this.props.type].options[this.state.selectedIndex]}
             </Label>

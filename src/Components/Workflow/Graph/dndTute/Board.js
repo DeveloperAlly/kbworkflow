@@ -67,7 +67,11 @@ class Board extends Component {
     for (let i = 0; i < 160; i++) {
       nodes.push(this.renderSquare(i, this.props.nodes));
     }
-    return <div style={styles.container}>{nodes}</div>;
+    return (
+      <div style={styles.container}>
+        {nodes}
+      </div>
+    );
   }
 }
 
